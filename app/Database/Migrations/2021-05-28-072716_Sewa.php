@@ -43,6 +43,11 @@ class Sewa extends Migration
 				'constraint' => 50,
 				'default' => 0,
 			],
+			'status_sewa'       => [
+				'type'       => 'INT',
+				'constraint' => 2,
+				'default' => 0,
+			],
 		]);
 		$this->forge->addKey('idSewa', true);
 		$this->forge->createTable('sewa');

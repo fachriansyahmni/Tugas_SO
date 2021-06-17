@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\KamarModel;
+use App\Models\PenyewaModel;
+use App\Models\SewaModel;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
@@ -54,5 +57,16 @@ class BaseController extends Controller
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------
 		// E.g.: $this->session = \Config\Services::session();
+	}
+
+	protected $kamarModel;
+	protected $penyewaModel;
+	protected $sewaModel;
+
+	public function __construct()
+	{
+		$this->kamarModel = new KamarModel();
+		$this->penyewaModel = new PenyewaModel();
+		$this->sewaModel = new SewaModel();
 	}
 }

@@ -19,7 +19,7 @@ class Kamar extends BaseController
         $nokamar    = $this->request->getVar('kamar');
         $lantai     = $this->request->getVar('lantai');
         $fasilitas  = $this->request->getVar('fasilitas');
-        $harga  = $this->request->getVar('harga');
+        $harga      = $this->request->getVar('harga');
 
         $this->kamarModel->insert([
             'NoKamar'       => $nokamar,

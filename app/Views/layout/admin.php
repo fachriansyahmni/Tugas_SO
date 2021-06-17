@@ -41,7 +41,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -56,28 +56,28 @@
 
             <!-- Nav Item - Admin -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/admin">
                     <i class="fas fa-users"></i>
                     <span>Admin</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="/kamar">
                     <i class="fas fa-door-open"></i>
                     <span>Kamar</span></a>
             </li>
 
             <!-- Nav Item - Sewa -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="/sewa">
                     <i class="fas fa-clipboard-list"></i>
                     <span>Sewa</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="/pembayaran">
                     <i class="fas fa-coins"></i>
                     <span>Pembayaran</span></a>
             </li>

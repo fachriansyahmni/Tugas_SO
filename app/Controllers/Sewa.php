@@ -15,6 +15,11 @@ class Sewa extends BaseController
         return view('pages\Sewa', $data);
     }
 
+    public function getDataSewa()
+    {
+        echo json_encode($this->penyewaModel->fetchPenyewa($_POST['id']));
+    }
+
     public function save()
     {
         $idSewa         = $this->sewaModel->generateIdSewa();
@@ -56,6 +61,25 @@ class Sewa extends BaseController
             'IdPenyewa'         => $idPenyewa,
             'NoKamar'           => $noKamar
         ]);
+
+        return redirect()->to('/sewa');
+    }
+
+    public function update($id)
+    {
+        $this->penyewaModel->update($id, [
+            'NamaPenyewa'   => $this->request->getVar('nama'),
+            'JenisKelamin'  => $this->request->getVar('jk'),
+            'NoTelp'        => $this->request->getVar('telepon'),
+            'Alamat'        => $this->request->getVar('alamat')
+        ]);
+
+        return redirect()->to('/sewa');
+    }
+
+    public function delete($id)
+    {
+        $this->sewaModel->delete($id);
 
         return redirect()->to('/sewa');
     }

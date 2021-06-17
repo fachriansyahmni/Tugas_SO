@@ -27,4 +27,13 @@ class PenyewaModel extends Model
 
         return $id;
     }
+
+    public function fetchPenyewa($id = false)
+    {
+        if ($id == false) {
+            return $this->findAll();
+        }
+
+        return $this->where('IdPenyewa', $id)->first();
+    }
 }

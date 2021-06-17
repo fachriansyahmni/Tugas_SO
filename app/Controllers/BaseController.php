@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\KamarModel;
 use App\Models\PenyewaModel;
 use App\Models\SewaModel;
+use App\Models\PembayaranModel;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
@@ -62,11 +63,13 @@ class BaseController extends Controller
 	protected $kamarModel;
 	protected $penyewaModel;
 	protected $sewaModel;
+	protected $pembayaranModel;
 
 	public function __construct()
 	{
 		$this->kamarModel = new KamarModel();
 		$this->penyewaModel = new PenyewaModel();
 		$this->sewaModel = new SewaModel();
+		$this->pembayaranModel = new PembayaranModel();
 	}
 }

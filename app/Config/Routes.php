@@ -39,6 +39,7 @@ $routes->get('/login', function () {
 	return "login";
 });
 
+$routes->get('/pembayaran', 'Pembayaran::index');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

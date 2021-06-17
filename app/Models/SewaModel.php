@@ -40,4 +40,32 @@ class SewaModel extends Model
 
         return $id;
     }
+
+    public function fetchPembayaran($id = false)
+    {
+        if ($id == false) {
+            $result = $this->fetchSewaJoin();
+            foreach ($result as $index => $pembayaran) {
+                $pembayaran["penyewa"] = $this->getDataPenyewa($pembayaran["IdPenyewa"])["NamaPenyewa"];
+                $pembayaran["status_pembayaran"] = $this->checkStatusPembayaran($pembayaran["TanggalPembayaran"]);
+                $result[$index] = $pembayaran;
+            }
+            return $result;
+        }
+        return $this->where('IdSewa', $id);
+    }
+
+    public function getDataPenyewa($id)
+    {
+        return  $this->join('penyewa', 'penyewa.IdPenyewa = sewa.IdPenyewa')->where("penyewa.IdPenyewa", $id)
+            ->first();
+    }
+
+    public function checkStatusPembayaran($tglPembayaran = null)
+    {
+        if ($tglPembayaran == null) {
+            return "Belum Lunas";
+        }
+        return "Lunas";
+    }
 }

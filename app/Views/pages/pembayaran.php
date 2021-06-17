@@ -33,39 +33,92 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>TR-001</td>
-                            <td>Adit</td>
-                            <td>01</td>
-                            <td>Rp. 500.000</td>
-                            <td>
-                                <h5><span class="badge badge-success w-100 py-2">Lunas</span></h5>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalDetail">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>TR-002</td>
-                            <td>Jajang</td>
-                            <td>02</td>
-                            <td>Rp. 500.000</td>
-                            <td>
-                                <h5><span class="badge badge-danger w-100 py-2">Belum Bayar</span></h5>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-success mr-3">
-                                    <i class="fas fa-check"></i>
-                                </button>
-                                <button type="button" class="btn btn-warning">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        <?php
+                        $no = 1;
+                        foreach ($pembayaran as $index => $pmbyrn) :
+                        ?>
+                            <tr>
+                                <th scope="row"><?= $no++  ?></th>
+                                <td><?= $pmbyrn["IdSewa"] ?></td>
+                                <td><?= $pmbyrn["penyewa"] ?></td>
+                                <td><?= $pmbyrn["NoKamar"]  ?></td>
+                                <td><?= $pmbyrn["GrandTotal"]  ?></td>
+                                <td>
+                                    <?php
+                                    if ($pmbyrn["status_pembayaran"] == "Lunas") {
+                                        $badge_color = "badge-success";
+                                    } else {
+                                        $badge_color = "badge-danger";
+                                    }
+                                    ?>
+                                    <h5><span class="badge <?= $badge_color ?> w-100 py-2"><?= $pmbyrn["status_pembayaran"]  ?></span></h5>
+                                </td>
+                                <td>
+                                    <!-- <button type="button" class="btn btn-success mr-3">
+                                        <i class="fas fa-check"></i>
+                                    </button> -->
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalDetail<?= $index ?>">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </td>
+                            </tr>
+
+
+                            <div class="modal fade" id="modalDetail<?= $index ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Detail Pembayaran</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form action="#">
+                                            <div class="modal-body">
+                                                <div class="form-group row">
+                                                    <label for="id" class="col-md-3">No Transaksi</label>
+                                                    <input type="text" class="form-control col-md-8" id="id" readonly value="<?= $pmbyrn["IdSewa"] ?>" name="id">
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="nama" class="col-md-3">Nama Penghuni</label>
+                                                    <input type="text" class="form-control col-md-8" id="nama" readonly value="<?= $pmbyrn["penyewa"]  ?>" name="nama">
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="kamar" class="col-md-3">No Kamar</label>
+                                                    <input type="text" class="form-control col-md-8" id="kamar" readonly value="<?= $pmbyrn["NoKamar"]  ?>" name="kamar">
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="kamar" class="col-md-3">Status</label>
+                                                    <h5>
+                                                        <span class="badge <?= $badge_color ?> py-2 col-md-12"><?= $pmbyrn["status_pembayaran"]  ?></span>
+                                                    </h5>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="tanggal" class="col-md-3">Lama Sewa</label>
+                                                    <input type="date" class="form-control col-md-4" value="<?= $pmbyrn["TanggalSewa"] ?>" name="awalSewa">
+                                                    <input type="date" class="form-control col-md-4" value="<?= $pmbyrn["TanggalAkhirSewa"] ?>" name="akhirSewa">
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="harga" class="col-md-3">Harga</label>
+                                                    <input type="number" class="form-control col-md-8" readonly id="harga" value="">
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="total" class="col-md-3">Total Harga</label>
+                                                    <input type="number" class="form-control col-md-8" id="total" value="<?= $pmbyrn["GrandTotal"] ?>" name="totalharga">
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                <button type="button" class="btn btn-primary">Simpan</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php
+
+                        endforeach;
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -78,55 +131,6 @@
 <!-- End Content Row -->
 
 <!-- Modal Detail -->
-<div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Detail Pembayaran</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="#">
-                <div class="modal-body">
-                    <div class="form-group row">
-                        <label for="id" class="col-md-3">No Transaksi</label>
-                        <input type="text" class="form-control col-md-8" id="id" name="id">
-                    </div>
-                    <div class="form-group row">
-                        <label for="nama" class="col-md-3">Nama Penghuni</label>
-                        <input type="text" class="form-control col-md-8" id="nama" name="nama">
-                    </div>
-                    <div class="form-group row">
-                        <label for="kamar" class="col-md-3">No Kamar</label>
-                        <input type="number" class="form-control col-md-8" id="kamar" name="kamar">
-                    </div>
-                    <div class="form-group row">
-                        <label for="kamar" class="col-md-3">Status</label>
-                        <h5><span class="badge badge-success py-2 col-md-12">Lunas</span></h5>
-                    </div>
-                    <div class="form-group row">
-                        <label for="tanggal" class="col-md-3">Lama Sewa</label>
-                        <input type="date" class="form-control col-md-4" name="awalSewa">
-                        <input type="date" class="form-control col-md-4" name="akhirSewa">
-                    </div>
-                    <div class="form-group row">
-                        <label for="harga" class="col-md-3">Harga</label>
-                        <input type="number" class="form-control col-md-8" id="harga" name="harga">
-                    </div>
-                    <div class="form-group row">
-                        <label for="total" class="col-md-3">Total Harga</label>
-                        <input type="number" class="form-control col-md-8" id="total" name="harga">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="button" class="btn btn-primary">Simpan</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 <!-- End Modal Detail -->
 
 <?= $this->endSection(); ?>

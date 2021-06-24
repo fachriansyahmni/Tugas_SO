@@ -6,6 +6,7 @@ use App\Models\KamarModel;
 use App\Models\PenyewaModel;
 use App\Models\SewaModel;
 use App\Models\PembayaranModel;
+use App\Models\UserModel;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
@@ -60,6 +61,7 @@ class BaseController extends Controller
 		// E.g.: $this->session = \Config\Services::session();
 	}
 
+	protected $userModel;
 	protected $kamarModel;
 	protected $penyewaModel;
 	protected $sewaModel;
@@ -68,6 +70,7 @@ class BaseController extends Controller
 	public function __construct()
 	{
 		helper('rupiah');
+		$this->userModel = new UserModel();
 		$this->kamarModel = new KamarModel();
 		$this->penyewaModel = new PenyewaModel();
 		$this->sewaModel = new SewaModel();

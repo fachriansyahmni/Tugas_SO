@@ -130,9 +130,13 @@
                         <label for="kamar">Kamar</label>
                         <select id="kamar" class="form-control" name="kamar">
                             <option selected>-- Pilih Kamar --</option>
-                            <option value="01">01</option>
-                            <option>02</option>
-                            <option>03</option>
+                            <?php
+                            foreach ($kamars as $kamar) {
+                            ?>
+                                <option value="<?= $kamar["NoKamar"] ?>"><?= $kamar["NoKamar"] ?></option>
+                            <?php
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="row mt-3 tanggal">

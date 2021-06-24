@@ -39,6 +39,8 @@ $routes->get('/login', function () {
 	return "login";
 });
 
+$routes->get("/admin", "AdminController::index");
+
 $routes->get('/pembayaran', 'Pembayaran::index');
 $routes->post('/bayar', 'Pembayaran::aksiBayar');
 $routes->get('/riwayat-pembayaran', 'Pembayaran::riwayatIndex');

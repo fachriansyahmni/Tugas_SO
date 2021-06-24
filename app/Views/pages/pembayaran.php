@@ -107,21 +107,25 @@
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="tanggal" class="col-md-3">Lama Sewa</label>
-                                                        <input type="date" class="form-control col-md-4" value="<?= $pmbyrn["TanggalSewa"] ?>" name="awalSewa">
-                                                        <input type="date" class="form-control col-md-4" value="<?= $pmbyrn["TanggalAkhirSewa"] ?>" name="akhirSewa">
+                                                        <input type="date" class="form-control col-md-4" readonly value="<?= $pmbyrn["TanggalSewa"] ?>" name="awalSewa">
+                                                        <input type="date" class="form-control col-md-4" readonly value="<?= $pmbyrn["TanggalAkhirSewa"] ?>" name="akhirSewa">
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="harga" class="col-md-3">Harga</label>
-                                                        <input type="number" class="form-control col-md-8" readonly id="harga" value="">
+                                                        <input type="text" class="form-control col-md-8" readonly id="harga" value="<?= $pmbyrn["Harga"] ?>">
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="total" class="col-md-3">Total Harga</label>
-                                                        <input type="number" class="form-control col-md-8" id="total" value="<?= $pmbyrn["GrandTotal"] ?>" name="totalharga">
+                                                        <input type="number" class="form-control col-md-8" id="total" readonly value="<?= $pmbyrn["GrandTotal"] ?>" name="totalharga">
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
+                                                    <?php
+                                                    if ($pmbyrn["status_pembayaran"] != "Lunas") {
+                                                    ?>
+                                                        <button type="button" class="btn btn-success">Kirim Pesan</button>
+                                                    <?php } ?>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                                    <button type="button" class="btn btn-primary">Simpan</button>
                                                 </div>
                                             </form>
                                         </div>

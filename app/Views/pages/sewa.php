@@ -66,6 +66,9 @@
                                     <button type="button" class="btn btn-danger" id="hapus" data-href="Sewa/delete/<?= $s['IdSewa']; ?>" data-toggle="modal" data-target="#modalHapus">
                                         <i class="far fa-trash-alt"></i>
                                     </button>
+                                    <button type="button" class="btn btn-warning">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
                                 </td>
                             </tr>
 

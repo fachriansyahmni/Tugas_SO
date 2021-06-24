@@ -17,7 +17,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                             Jumlah Kamar</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">6</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $kamar ?></div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-door-open fa-2x text-gray-300"></i>
@@ -35,7 +35,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                             Jumlah Penghuni</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">6</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $penyewa ?></div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -53,7 +53,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                             Belum Bayar</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">6</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $nunggak ?></div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-thumbs-down fa-2x text-gray-300"></i>
@@ -71,7 +71,7 @@
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                             Lunas</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">6</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $lunas ?></div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-thumbs-up fa-2x text-gray-300"></i>

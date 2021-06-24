@@ -14,20 +14,37 @@ class Kamar extends BaseController
         return view('pages\kamar', $data);
     }
 
+    public function getDataKamar()
+    {
+        echo json_encode($this->kamarModel->fetchkamar($_POST['id']));
+    }
+
     public function save()
     {
-        $nokamar    = $this->request->getVar('kamar');
-        $lantai     = $this->request->getVar('lantai');
-        $fasilitas  = $this->request->getVar('fasilitas');
-        $harga      = $this->request->getVar('harga');
-
         $this->kamarModel->insert([
-            'NoKamar'       => $nokamar,
-            'Lantai'        => $lantai,
-            'Fasilitas'     => $fasilitas,
-            'Harga'         => $harga,
-            'status_kamar'  => ''
+            'NoKamar'       => $this->request->getVar('kamar'),
+            'Lantai'        => $this->request->getVar('lantai'),
+            'Fasilitas'     => $this->request->getVar('fasilitas'),
+            'Harga'         => $this->request->getVar('harga'),
         ]);
+
+        return redirect()->to('/kamar');
+    }
+
+    public function update($id)
+    {
+        $this->kamarModel->update($id, [
+            'Lantai'        => $this->request->getVar('lantai'),
+            'Fasilitas'     => $this->request->getVar('fasilitas'),
+            'Harga'         => $this->request->getVar('harga'),
+        ]);
+
+        return redirect()->to('/kamar');
+    }
+
+    public function delete($id)
+    {
+        $this->kamarModel->delete($id);
 
         return redirect()->to('/kamar');
     }

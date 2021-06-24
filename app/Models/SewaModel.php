@@ -68,4 +68,14 @@ class SewaModel extends Model
         }
         return "Lunas";
     }
+
+    public function countLunas()
+    {
+        return $this->selectCount('IdSewa')->where('TanggalPembayaran !=', NULL)->get()->getRow()->IdSewa;
+    }
+
+    public function countNuggak()
+    {
+        return $this->selectCount('IdSewa')->where('TanggalPembayaran =', NULL)->get()->getRow()->IdSewa;
+    }
 }

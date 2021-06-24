@@ -53,11 +53,9 @@ class Sewa extends BaseController
         //Insert Table Sewa
         $this->sewaModel->insert([
             'IdSewa'            => $idSewa,
-            'TanggalPembayaran' => '',
             'TanggalSewa'       => $tglSewa,
             'TanggalAkhirSewa'  => $tglAkhirSewa,
             'GrandTotal'        => $grandTotal,
-            'status_sewa'       => '',
             'IdPenyewa'         => $idPenyewa,
             'NoKamar'           => $noKamar
         ]);
@@ -79,6 +77,8 @@ class Sewa extends BaseController
 
     public function delete($id)
     {
+        $this->penyewaModel->delete($id);
+
         $this->sewaModel->delete($id);
 
         return redirect()->to('/sewa');

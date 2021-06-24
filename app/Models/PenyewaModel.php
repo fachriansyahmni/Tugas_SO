@@ -36,4 +36,9 @@ class PenyewaModel extends Model
 
         return $this->where('IdPenyewa', $id)->first();
     }
+
+    public function countPenyewa()
+    {
+        return $this->selectCount('IdPenyewa')->countAll();
+    }
 }

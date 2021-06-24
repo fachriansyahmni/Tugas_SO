@@ -17,7 +17,7 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Daftar Kamar</h6>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdd">Tambah Kamar</button>
+                <button type="button" class="btn btn-primary" id="tambah" data-toggle="modal" data-target="#modal">Tambah Kamar</button>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-hover text-center">
@@ -51,10 +51,10 @@
                                     </h5>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-success">
+                                    <button type="button" class="btn btn-success edit" data-toggle="modal" data-target="#modal" data-id="<?= $k['NoKamar'] ?>">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <button type="button" class="btn btn-danger">
+                                    <button type="button" id="hapus" class="btn btn-danger" data-href="Kamar/delete/<?= $k['NoKamar'] ?>" data-toggle="modal" data-target="#modalHapus">
                                         <i class="far fa-trash-alt"></i>
                                     </button>
                                 </td>
@@ -76,7 +76,7 @@
 <!-- End Content Row -->
 
 <!-- Modal Add -->
-<div class="modal fade" id="modalAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -119,5 +119,72 @@
     </div>
 </div>
 <!-- End Modal Add -->
+
+<!-- Modal Hapus -->
+<div class="modal fade" id="modalHapus" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title-hapus" id="exampleModalLabel">Apakah anda yakin akan menghapus data ini?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer d-inline text-center">
+                <a class="btn btn-danger btn-ok">Delete</a>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Cencel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal Hapus -->
+
+<script>
+    $(document).ready(function() {
+        //insert
+        $("#tambah").on("click", function() {
+            $(".modal-title").html("Tambah Kamar");
+            $("form").attr("action", "Kamar/save/");
+            $("#kamar").attr("readonly", false);
+
+            //remove data in modal
+            $("#kamar").val('');
+            $("#lantai").val('');
+            $("#fasilitas").val('');
+            $("#harga").val('');
+        });
+
+        //update
+        $(".edit").on("click", function() {
+            const id = $(this).data('id');
+
+            $(".modal-title").html("Ubah Kamar");
+            $("form").attr("action", "Kamar/update/" + id);
+            $("#kamar").attr("readonly", true);
+
+            $.ajax({
+                url: "Kamar/getDataKamar",
+                data: {
+                    id: id,
+                },
+                method: "POST",
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+                    $('#kamar').val(data.NoKamar);
+                    $('#lantai').val(data.Lantai);
+                    $('#fasilitas').val(data.Fasilitas);
+                    $('#harga').val(data.Harga);
+                },
+
+            });
+        });
+
+        //delete
+        $("#modalHapus").on("show.bs.modal", function(e) {
+            $('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+        })
+    });
+</script>
 
 <?= $this->endSection(); ?>

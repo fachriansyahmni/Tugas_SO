@@ -19,4 +19,9 @@ class KamarModel extends Model
 
         return $this->where('NoKamar', $id)->first();
     }
+
+    public function countKamar()
+    {
+        return $this->selectCount('NoKamar')->countAll();
+    }
 }

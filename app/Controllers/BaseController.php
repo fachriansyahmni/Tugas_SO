@@ -40,7 +40,7 @@ class BaseController extends Controller
 	 *
 	 * @var array
 	 */
-	protected $helpers = [];
+	protected $helpers = ['rupiah'];
 
 	/**
 	 * Constructor.
@@ -67,6 +67,7 @@ class BaseController extends Controller
 
 	public function __construct()
 	{
+		helper('rupiah');
 		$this->kamarModel = new KamarModel();
 		$this->penyewaModel = new PenyewaModel();
 		$this->sewaModel = new SewaModel();

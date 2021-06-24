@@ -19,35 +19,41 @@
                 <h6 class="m-0 font-weight-bold text-primary">Daftar Riwayat Pembayaran</h6>
             </div>
             <div class="card-body">
-                <table class="table table-bordered table-hover text-center">
-                    <thead>
-                        <tr>
-                            <th scope="col">NO</th>
-                            <th scope="col">No Transaksi</th>
-                            <th scope="col">Penghuni</th>
-                            <th scope="col">No Kamar</th>
-                            <th scope="col">Total Harga</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>TR-001</td>
-                            <td>Adit</td>
-                            <td>01</td>
-                            <td>Rp. 500.000</td>
-                            <td>
-                                <h5><span class="badge badge-success w-100 py-2">Lunas</span></h5>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalDetail">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover text-center">
+                        <thead>
+                            <tr>
+                                <th scope="col">NO</th>
+                                <th scope="col">No Transaksi</th>
+                                <th scope="col">Penghuni</th>
+                                <th scope="col">No Kamar</th>
+                                <th scope="col">Total Harga</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $no = 1;
+                            foreach ($riwayatPembayarans as $index => $riwayatPembayaran) :
+                            ?>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td><?= $riwayatPembayaran["IdRiwayatSewa"]  ?></td>
+                                    <td><?= $riwayatPembayaran["NamaPenyewa"] ?></td>
+                                    <td><?= $riwayatPembayaran["NoKamar"]  ?></td>
+                                    <td><?= rupiah($riwayatPembayaran["GrandTotal"])  ?></td>
+                                    <td>
+                                        <h5><span class="badge badge-success w-100 py-2">Lunas</span></h5>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalDetail">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                            <!-- <tr>
                             <th scope="row">2</th>
                             <td>TR-002</td>
                             <td>Jajang</td>
@@ -61,9 +67,10 @@
                                     <i class="fas fa-eye"></i>
                                 </button>
                             </td>
-                        </tr>
-                    </tbody>
-                </table>
+                        </tr> -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
 

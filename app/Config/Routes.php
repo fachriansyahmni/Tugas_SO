@@ -40,6 +40,8 @@ $routes->get('/login', function () {
 });
 
 $routes->get('/pembayaran', 'Pembayaran::index');
+$routes->post('/bayar', 'Pembayaran::aksiBayar');
+$routes->get('/riwayat-pembayaran', 'Pembayaran::riwayatIndex');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

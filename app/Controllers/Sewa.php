@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\HTTP\Request;
+
 class Sewa extends BaseController
 {
 

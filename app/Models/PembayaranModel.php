@@ -11,10 +11,26 @@ class PembayaranModel extends SewaModel
 
     protected $allowedFields  = ['IdRiwayatSewa', 'TanggalPembayaran', 'TanggalSewa', 'TanggalAkhirSewa', 'GrandTotal', 'status_sewa', 'IdSewa'];
 
+    public function generateIdRiwayatSewa()
+    {
+        $data   = $this->selectMax('IdRiwayatSewa')->get()->getRowArray();
+        $id     = $data['IdRiwayatSewa'];
+
+        $order = (int) substr($id, 3, 3);
+
+        $order++;
+
+        $alphabet = 'RSW-';
+        $id = $alphabet . sprintf("%03s", $order);
+
+        return $id;
+    }
+
     public function fetchPembayaranJoin($id = false)
     {
         if ($id == false) {
             $result = $this->join('sewa', 'sewa.IdSewa = riwayat_sewa.IdSewa')
+                ->join('penyewa', 'penyewa.IdPenyewa = sewa.IdPenyewa')
                 ->findAll();
 
             return $result;

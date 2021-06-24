@@ -23,7 +23,7 @@ class SewaModel extends Model
             return $result;
         }
 
-        return $this->where('IdPenyewa', $id)->first();
+        return $this->where('IdSewa', $id)->first();
     }
 
     public function generateIdSewa()

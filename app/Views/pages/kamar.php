@@ -47,7 +47,7 @@
                                 <td>
                                     <h5>
 
-                                        <?= $k['status_kamar'] == 0 ? '<span class="badge badge-success w-100 py-2">Tersedia</span>' : '<span class="badge badge-denger w-100 py-2">Tersedia</span>' ?>
+                                        <?= $k['status_kamar'] == 0 ? '<span class="badge badge-success w-100 py-2">Tersedia</span>' : '<span class="badge badge-danger w-100 py-2">Terisi</span>' ?>
                                     </h5>
                                 </td>
                                 <td>

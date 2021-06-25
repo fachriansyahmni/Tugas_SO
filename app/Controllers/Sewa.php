@@ -12,12 +12,18 @@ class Sewa extends BaseController
         $data = [
             'title' => 'HaloKos | Daftar Sewa',
             'sewa' => $this->sewaModel->fetchSewaJoin(),
+            'kamar' => $this->kamarModel->fetchKamarByStatus(),
         ];
 
         return view('pages\Sewa', $data);
     }
 
     public function getDataSewa()
+    {
+        echo json_encode($this->sewaModel->fetchSewaJoin($_POST['id']));
+    }
+
+    public function getDataPenyewa()
     {
         echo json_encode($this->penyewaModel->fetchPenyewa($_POST['id']));
     }
@@ -62,6 +68,22 @@ class Sewa extends BaseController
             'NoKamar'           => $noKamar
         ]);
 
+        //Insert Data To Riwayat Sewa
+        $this->pembayaranModel->insert([
+            'IdRiwayatSewa'     => $this->pembayaranModel->generateIdRiwayatSewa(),
+            'TanggalSewa'       => $tglSewa,
+            'TanggalAkhirSewa'  => $tglAkhirSewa,
+            'GrandTotal'        => $grandTotal,
+            'IdPenyewa'         => $idPenyewa,
+            'NoKamar'           => $noKamar,
+            'IdSewa'            => $idSewa
+        ]);
+
+        //Update status kamar
+        $this->kamarModel->update($noKamar, [
+            'status_kamar' => 1
+        ]);
+
         return redirect()->to('/sewa');
     }
 
@@ -79,9 +101,16 @@ class Sewa extends BaseController
 
     public function delete($id)
     {
-        $this->penyewaModel->delete($id);
+        $dataSewa = $this->sewaModel->fetchSewaJoin($id);
 
-        $this->sewaModel->delete($id);
+        $hapusSewa = $this->penyewaModel->delete($dataSewa['IdPenyewa']);
+
+        if ($hapusSewa) {
+            // update status kamar
+            $this->kamarModel->update($dataSewa['NoKamar'], [
+                'status_kamar' => 0
+            ]);
+        }
 
         return redirect()->to('/sewa');
     }

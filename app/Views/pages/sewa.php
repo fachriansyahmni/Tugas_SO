@@ -66,7 +66,7 @@
                                     <button type="button" class="btn btn-danger" id="hapus" data-href="Sewa/delete/<?= $s['IdSewa']; ?>" data-toggle="modal" data-target="#modalHapus">
                                         <i class="far fa-trash-alt"></i>
                                     </button>
-                                    <button type="button" class="btn btn-warning">
+                                    <button type="button" class="btn btn-warning detail" data-toggle="modal" data-target="#modalDetail" data-id="<?= $s['IdSewa'] ?>">
                                         <i class="fas fa-eye"></i>
                                     </button>
                                 </td>
@@ -93,9 +93,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Sewa</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <form action="/Sewa/save" method="POST">
                 <div class="modal-body">
@@ -130,9 +127,17 @@
                         <label for="kamar">Kamar</label>
                         <select id="kamar" class="form-control" name="kamar">
                             <option selected>-- Pilih Kamar --</option>
-                            <option value="01">01</option>
-                            <option>02</option>
-                            <option>03</option>
+
+                            <?php
+                            foreach ($kamar as $k) :
+                            ?>
+
+                                <option value="<?= $k['NoKamar'] ?>"><?= $k['NoKamar'] ?></option>
+
+                            <?php
+                            endforeach;
+                            ?>
+
                         </select>
                     </div>
                     <div class="row mt-3 tanggal">
@@ -151,7 +156,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-secondary back" data-dismiss="modal">Tutup</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
@@ -159,6 +164,57 @@
     </div>
 </div>
 <!-- End Modal Add -->
+
+<!-- Modal Detail -->
+<div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="title" id="exampleModalLabel">Detail Sewa</h5>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="nama">Nama</label>
+                    <input type="text" class="form-control nama" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="jk">Jenis kelamin</label>
+                    <input type="text" class="form-control" id="jk" name="jk" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="telepon">No Telepon</label>
+                    <input type="text" class="form-control notelp" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="alamat">Alamat</label>
+                    <textarea class="form-control alamat" rows="5" readonly></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="kamar">Kamar</label>
+                    <input type="text" class="form-control nokamar" readonly></input>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="awalSewa">Tanggal Awal Sewa</label>
+                            <input type="date" class="form-control awalSewa" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="akhirSewa">Tanggal Akhir Sewa</label>
+                            <input type="date" class="form-control akhirSewa" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary back" data-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal Detail -->
 
 <!-- Modal Perpanjang -->
 <div class="modal fade" id="modalPerpanjang" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -203,9 +259,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title-hapus" id="exampleModalLabel">Apakah anda yakin akan menghapus data ini?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div class="modal-footer d-inline text-center">
                 <a class="btn btn-danger btn-ok">Delete</a>
@@ -251,19 +304,17 @@
             });
 
             $.ajax({
-                url: "Sewa/getDataSewa",
+                url: "Sewa/getDataPenyewa",
                 data: {
                     id: id,
                 },
                 method: "POST",
                 dataType: "json",
-                success: function(data) {
-                    console.log(data);
-                    $('#nama').val(data.NamaPenyewa);
-                    $('#telepon').val(data.NoTelp);
-                    $('#alamat').val(data.Alamat);
-                    console.log(data.JenisKelamin);
-                    if (data.JenisKelamin == 'Laki-Laki') {
+                success: function(response) {
+                    $('#nama').val(response.NamaPenyewa);
+                    $('#telepon').val(response.NoTelp);
+                    $('#alamat').val(response.Alamat);
+                    if (response.JenisKelamin == 'Laki-Laki') {
                         $("[name='jk'][value='Laki-Laki'").prop('checked', true)
                     } else {
                         $("[name='jk'][value='Perempuan'").prop('checked', true)
@@ -277,6 +328,31 @@
         $('#modalHapus').on('show.bs.modal', function(e) {
             $('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
         });
+
+        //Detail
+        $('.detail').on('click', function() {
+            const id = $(this).data('id');
+
+            $.ajax({
+                url: "Sewa/getDataSewa",
+                data: {
+                    id: id
+                },
+                method: "POST",
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
+                    $(".nama").val(response.NamaPenyewa);
+                    $(".notelp").val(response.NoTelp);
+                    $(".alamat").val(response.Alamat);
+                    $("#jk").val(response.JenisKelamin);
+                    $(".nokamar").val(response.NoKamar);
+                    $(".awalSewa").val(response.TanggalSewa);
+                    $(".akhirSewa").val(response.TanggalAkhirSewa);
+                }
+            });
+        });
+
     });
 </script>
 

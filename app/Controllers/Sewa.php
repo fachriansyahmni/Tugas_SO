@@ -13,6 +13,7 @@ class Sewa extends BaseController
             'title' => 'HaloKos | Daftar Sewa',
             'sewa' => $this->sewaModel->fetchSewaJoin(),
             'kamar' => $this->kamarModel->fetchKamarByStatus(),
+
         ];
 
         return view('pages\Sewa', $data);

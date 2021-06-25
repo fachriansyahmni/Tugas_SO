@@ -91,7 +91,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="kamar">No Kamar</label>
-                                <input type="number" class="form-control" id="kamar" name="kamar">
+                                <input type="text" class="form-control" id="kamar" name="kamar">
                             </div>
                         </div>
                         <div class="col-md-6">

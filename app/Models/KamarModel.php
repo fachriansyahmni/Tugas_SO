@@ -24,4 +24,19 @@ class KamarModel extends Model
     {
         return $this->selectCount('NoKamar')->countAll();
     }
+
+    public function changeToTersedia($id)
+    {
+        $data = [
+            'status_kamar' => 0
+        ];
+        return $this->update($id, $data);
+    }
+    public function changeToTidakTersedia($id)
+    {
+        $data = [
+            'status_kamar' => 1
+        ];
+        return $this->update($id, $data);
+    }
 }

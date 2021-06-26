@@ -133,7 +133,7 @@
                             <?php
                             foreach ($kamars as $kamar) {
                             ?>
-                                <option value="<?= $kamar["NoKamar"] ?>"><?= $kamar["NoKamar"] ?></option>
+                                <option value="<?= $kamar["NoKamar"] ?>" <?= $kamar['status_kamar'] != 0 ? 'disabled' : '' ?>><?= $kamar["NoKamar"] ?> <?= $kamar['status_kamar'] != 0 ? '(tidak tersedia)' : '' ?></option>
                             <?php
                             }
                             ?>
@@ -237,7 +237,7 @@
             $('#nama').val("");
             $('#alamat').val("");
             $('#telepon').val("");
-            $("[name='jk'][value='Laki-Laki'").prop('checked', false);
+            $("[name='jk'][value='Laki-Laki'").prop('checked', true);
             $("[name='jk'][value='Perempuan'").prop('checked', false);
         });
 

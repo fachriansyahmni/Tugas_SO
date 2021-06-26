@@ -47,7 +47,7 @@
                                 <td>
                                     <h5>
 
-                                        <?= $k['status_kamar'] == 0 ? '<span class="badge badge-success w-100 py-2">Tersedia</span>' : '<span class="badge badge-denger w-100 py-2">Tersedia</span>' ?>
+                                        <?= $k['status_kamar'] == 0 ? '<span class="badge badge-success w-75 py-2">Tersedia</span>' : '<span class="badge badge-danger w-75 py-2">Sudah Ditempati</span>' ?>
                                     </h5>
                                 </td>
                                 <td>
@@ -103,7 +103,7 @@
                     </div>
                     <div class="form-group">
                         <label for="fasilitas">Fasilitas</label>
-                        <input type="text" class="form-control" id="fasilitas" name="fasilitas">
+                        <textarea name="fasilitas" class="form-control" id="fasilitas" cols="30" rows="10"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="harga">Harga</label>

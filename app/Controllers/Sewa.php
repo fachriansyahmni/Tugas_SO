@@ -54,7 +54,7 @@ class Sewa extends BaseController
         $grandTotal = $lamaSewa * $kamar['Harga'];
 
         //Insert Table Sewa
-        $this->sewaModel->insert([
+        $saveSewa = $this->sewaModel->insert([
             'IdSewa'            => $idSewa,
             'TanggalSewa'       => $tglSewa,
             'TanggalAkhirSewa'  => $tglAkhirSewa,
@@ -62,6 +62,12 @@ class Sewa extends BaseController
             'IdPenyewa'         => $idPenyewa,
             'NoKamar'           => $noKamar
         ]);
+        if ($saveSewa) {
+            $this->kamarModel
+                ->whereIn('NoKamar', $noKamar)
+                ->set(['status_kamar' => 1])
+                ->update();
+        }
 
         return redirect()->to('/sewa');
     }

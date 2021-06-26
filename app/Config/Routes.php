@@ -35,11 +35,13 @@ $routes->get('/', 'Home::index');
 $routes->get('/kamar', 'Kamar::index');
 $routes->get('/sewa', 'Sewa::index');
 
-$routes->get('/login', function () {
-	return "login";
-});
+$routes->get('/login', 'LoginController::index');
+$routes->post('/login/process', 'LoginController::login');
+$routes->get('/logout', 'LoginController::logout');
 
 $routes->get("/admin", "AdminController::index");
+$routes->get('/admin/register', 'AdminController::AddUser');
+$routes->post('/admin/register/process', 'AdminController::process');
 
 $routes->get('/pembayaran', 'Pembayaran::index');
 $routes->post('/bayar', 'Pembayaran::aksiBayar');

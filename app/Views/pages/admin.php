@@ -80,7 +80,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="#">
+            <form method="post" action="<?= base_url(); ?>/admin/register/process">
+                <?= csrf_field(); ?>
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nama">Nama</label>
@@ -97,7 +98,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="button" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
         </div>

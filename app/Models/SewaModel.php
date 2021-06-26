@@ -11,8 +11,6 @@ class SewaModel extends Model
 
     protected $allowedFields  = ['IdSewa', 'TanggalPembayaran', 'TanggalSewa', 'TanggalAkhirSewa', 'GrandTotal', 'status_sewa', 'IdPenyewa', 'NoKamar'];
 
-    // protected $useSoftDeletes = true;
-
     public function fetchSewaJoin($id = false)
     {
         if ($id == false) {
@@ -26,6 +24,17 @@ class SewaModel extends Model
         return $this->join('penyewa', 'penyewa.IdPenyewa = sewa.IdPenyewa')
             ->join('kamar', 'kamar.NoKamar = sewa.NoKamar')
             ->where('IdSewa', $id)->first();
+    }
+
+    public function fetchSewaJoinByStatus()
+    {
+
+        $result = $this->join('penyewa', 'penyewa.IdPenyewa = sewa.IdPenyewa')
+            ->join('kamar', 'kamar.NoKamar = sewa.NoKamar')
+            ->where('status_sewa', 1)
+            ->findAll();
+
+        return $result;
     }
 
     public function generateIdSewa()

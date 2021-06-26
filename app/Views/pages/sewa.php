@@ -47,7 +47,7 @@
 
                                     <td>
                                         <button type="button" class="btn btn-warning mr-3">Kirim Pesan</button>
-                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalPerpanjang">Perpanjang</button>
+                                        <button type="button" class="btn btn-success perpanjang" data-toggle="modal" data-target="#modalPerpanjang" data-id="<?= $s['IdSewa'] ?>">Perpanjang</button>
                                     </td>
 
                                 <?php
@@ -230,21 +230,21 @@
                     <div class="row mt-3">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="awalSewa">Tanggal Awal Sewa</label>
-                                <input type="date" class="form-control" id="awalSewa" name="awalSewa">
+                                <label for="perpanjangAwalSewa">Tanggal Awal Sewa</label>
+                                <input type="date" class="form-control" id="perpanjangAwalSewa" name="perpanjangAwalSewa">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="akhirSewa">Tanggal Akhir Sewa</label>
-                                <input type="date" class="form-control" id="akhirSewa" name="akhirSewa">
+                                <label for="perpanjangAkhirSewa">Tanggal Akhir Sewa</label>
+                                <input type="date" class="form-control" id="perpanjangAkhirSewa" name="perpanjangAkhirSewa">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="button" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
         </div>
@@ -350,6 +350,13 @@
                     $(".akhirSewa").val(response.TanggalAkhirSewa);
                 }
             });
+        });
+
+        //Perpanjang
+        $('.perpanjang').on('click', function() {
+            const id = $(this).data('id');
+
+            $("form").attr("action", "Sewa/perpanjang/" + id);
         });
 
     });

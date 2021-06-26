@@ -47,12 +47,6 @@ class Sewa extends Migration
 				'constraint' 	=> '2',
 				'null' 			=> FALSE
 			],
-			'is_deleted'   => [
-				'type'       	=> 'INT',
-				'constraint' 	=> 2,
-				'default' 		=> 0,
-				'null'			=> FALSE
-			],
 		]);
 		$this->forge->addKey('IdSewa', true);
 		$this->forge->addForeignKey('IdPenyewa', 'penyewa', 'IdPenyewa', 'CASCADE', 'CASCADE');

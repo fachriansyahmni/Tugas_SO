@@ -11,7 +11,7 @@ class Sewa extends BaseController
     {
         $data = [
             'title' => 'HaloKos | Daftar Sewa',
-            'sewa' => $this->sewaModel->fetchSewaJoin(),
+            'sewa' => $this->sewaModel->fetchSewaJoinByStatus(),
             'kamar' => $this->kamarModel->fetchKamarByStatus(),
 
         ];
@@ -60,7 +60,7 @@ class Sewa extends BaseController
         $grandTotal = $lamaSewa * $kamar['Harga'];
 
         //Insert Table Sewa
-        $saveSewa = $this->sewaModel->insert([
+        $this->sewaModel->insert([
             'IdSewa'            => $idSewa,
             'TanggalSewa'       => $tglSewa,
             'TanggalAkhirSewa'  => $tglAkhirSewa,
@@ -68,27 +68,10 @@ class Sewa extends BaseController
             'IdPenyewa'         => $idPenyewa,
             'NoKamar'           => $noKamar
         ]);
-        if ($saveSewa) {
-            $this->kamarModel
-                ->whereIn('NoKamar', $noKamar)
-                ->set(['status_kamar' => 1])
-                ->update();
-        }
 
-        //Insert Data To Riwayat Sewa
-        $this->pembayaranModel->insert([
-            'IdRiwayatSewa'     => $this->pembayaranModel->generateIdRiwayatSewa(),
-            'TanggalSewa'       => $tglSewa,
-            'TanggalAkhirSewa'  => $tglAkhirSewa,
-            'GrandTotal'        => $grandTotal,
-            'IdPenyewa'         => $idPenyewa,
-            'NoKamar'           => $noKamar,
-            'IdSewa'            => $idSewa
-        ]);
-
-        //Update status kamar
+        // Update status kamar
         $this->kamarModel->update($noKamar, [
-            'status_kamar' => 1
+            'status_kamar'  => 1
         ]);
 
         return redirect()->to('/sewa');
@@ -110,7 +93,9 @@ class Sewa extends BaseController
     {
         $dataSewa = $this->sewaModel->fetchSewaJoin($id);
 
-        $hapusSewa = $this->penyewaModel->delete($dataSewa['IdPenyewa']);
+        $hapusSewa = $this->sewaModel->update($id, [
+            'status_sewa' => 0
+        ]);
 
         if ($hapusSewa) {
             // update status kamar
@@ -118,6 +103,34 @@ class Sewa extends BaseController
                 'status_kamar' => 0
             ]);
         }
+
+        return redirect()->to('/sewa');
+    }
+
+    public function perpanjang($id)
+    {
+        $tglSewa        = $this->request->getVar('perpanjangAwalSewa');
+        $tglAkhirSewa   = $this->request->getVar('perpanjangAkhirSewa');
+
+        //get data sewa
+        $dataSewa = $this->sewaModel->fetchSewaJoin($id);
+
+        //get table kamar
+        $kamar = $this->kamarModel->fetchkamar($dataSewa['NoKamar']);
+
+        //get interval
+        $lamaSewa = date_diff(date_create($tglSewa), date_create($tglAkhirSewa))->format('%a');
+
+        //calculate grandTotal
+        $grandTotal = $lamaSewa * $kamar['Harga'];
+
+        $this->sewaModel->update($id, [
+            'TanggalPembayaran' => null,
+            'TanggalSewa'       => $tglSewa,
+            'TanggalAkhirSewa'  => $tglAkhirSewa,
+            'GrandTotal'        => $grandTotal
+
+        ]);
 
         return redirect()->to('/sewa');
     }

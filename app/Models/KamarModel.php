@@ -9,7 +9,7 @@ class KamarModel extends Model
     protected $table      = 'kamar';
     protected $primaryKey = 'NoKamar';
 
-    protected $allowedFields  = ['NoKamar', 'Lantai', 'Fasilitas', 'Harga'];
+    protected $allowedFields  = ['NoKamar', 'Lantai', 'Fasilitas', 'Harga', 'status_kamar'];
 
     public function fetchkamar($id = false)
     {
@@ -18,6 +18,11 @@ class KamarModel extends Model
         }
 
         return $this->where('NoKamar', $id)->first();
+    }
+
+    public function fetchKamarByStatus()
+    {
+        return $this->where('status_kamar', 0)->findAll();
     }
 
     public function countKamar()

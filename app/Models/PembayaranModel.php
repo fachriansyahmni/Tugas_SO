@@ -20,7 +20,7 @@ class PembayaranModel extends SewaModel
 
         $order++;
 
-        $alphabet = 'RSW-';
+        $alphabet = 'RS-';
         $id = $alphabet . sprintf("%03s", $order);
 
         return $id;

@@ -30,14 +30,14 @@ class Filters extends BaseConfig
 	 */
 	public $globals = [
 		'before' => [
-			'csrf',
-			'usersAuth' => [
-				'except' => [
-					'login',
-					'login/process',
-					'logout/*'
-				]
-			]
+			// 'csrf',
+			// 'usersAuth' => [
+			// 	'except' => [
+			// 		'login',
+			// 		'login/process',
+			// 		'logout/*'
+			// 	]
+			// ]
 		],
 		'after'  => [
 			'toolbar',

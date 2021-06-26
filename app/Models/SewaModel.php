@@ -23,7 +23,9 @@ class SewaModel extends Model
             return $result;
         }
 
-        return $this->where('IdSewa', $id)->first();
+        return $this->join('penyewa', 'penyewa.IdPenyewa = sewa.IdPenyewa')
+            ->join('kamar', 'kamar.NoKamar = sewa.NoKamar')
+            ->where('IdSewa', $id)->first();
     }
 
     public function generateIdSewa()

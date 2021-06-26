@@ -43,11 +43,10 @@
                                 <td><?= $k['NoKamar'] ?></td>
                                 <td><?= $k['Lantai'] ?></td>
                                 <td><?= $k['Fasilitas'] ?></td>
-                                <td><?= $k['Harga'] ?></td>
+                                <td><?= rupiah($k['Harga']) ?></td>
                                 <td>
                                     <h5>
-
-                                        <?= $k['status_kamar'] == 0 ? '<span class="badge badge-success w-75 py-2">Tersedia</span>' : '<span class="badge badge-danger w-75 py-2">Sudah Ditempati</span>' ?>
+                                        <?= $k['status_kamar'] == 0 ? '<span class="badge badge-success w-75 py-2">Tersedia</span>' : '<span class="badge badge-danger w-75 py-2">Terisi</span>' ?>
                                     </h5>
                                 </td>
                                 <td>

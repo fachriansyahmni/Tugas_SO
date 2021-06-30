@@ -21,8 +21,13 @@ class Kamar extends BaseController
 
     public function save()
     {
+        $noKamar = $this->request->getVar('kamar');
+        $cetKamar = $this->kamarModel->fetchkamar($noKamar);
+        if ($cetKamar != null) {
+            return redirect()->back();
+        }
         $this->kamarModel->insert([
-            'NoKamar'       => $this->request->getVar('kamar'),
+            'NoKamar'       => $noKamar,
             'Lantai'        => $this->request->getVar('lantai'),
             'Fasilitas'     => $this->request->getVar('fasilitas'),
             'Harga'         => $this->request->getVar('harga'),
@@ -33,6 +38,10 @@ class Kamar extends BaseController
 
     public function update($id)
     {
+        $cetKamar = $this->kamarModel->fetchkamar($id);
+        if ($cetKamar == null) {
+            return redirect()->back();
+        }
         $this->kamarModel->update($id, [
             'Lantai'        => $this->request->getVar('lantai'),
             'Fasilitas'     => $this->request->getVar('fasilitas'),
@@ -44,6 +53,10 @@ class Kamar extends BaseController
 
     public function delete($id)
     {
+        $cetKamar = $this->kamarModel->fetchkamar($id);
+        if ($cetKamar == null) {
+            return redirect()->back();
+        }
         $this->kamarModel->delete($id);
 
         return redirect()->to('/kamar');

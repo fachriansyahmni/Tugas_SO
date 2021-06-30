@@ -31,11 +31,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php
+                        $no = 1;
+                        foreach ($admins as $admin) :
+                        ?>
+
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Adit</td>
-                            <td>Admin</td>
-                            <td>*********</td>
+                            <th scope="row"><?= $no++ ?></th>
+                            <td><?= $admin['nama'] ?></td>
+                            <td><?= $admin['username'] ?></td>
+                            <td><?= $admin['password'] ?></td>
                             <td>
                                 <button type="button" class="btn btn-success">
                                     <i class="fas fa-edit"></i>
@@ -45,20 +50,9 @@
                                 </button>
                             </td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jajang</td>
-                            <td>jajang</td>
-                            <td>***************</td>
-                            <td>
-                                <button type="button" class="btn btn-success">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger">
-                                    <i class="far fa-trash-alt"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        <?php
+                        endforeach;
+                        ?>
                     </tbody>
                 </table>
             </div>

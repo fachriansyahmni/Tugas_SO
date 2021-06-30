@@ -9,13 +9,10 @@ class UserSeeder extends Seeder
 	public function run()
 	{
 		$data = [
-			'name'    => 'Administrator',
+			'nama'    => 'Administrator',
 			'username' => 'admin',
-			'password'    => '',
+			'password'    => password_hash('admin', PASSWORD_BCRYPT),
 		];
-
-		// Simple Queries
-		$this->db->query("INSERT INTO users (name, username,password) VALUES(:name:, :username:, :password:)", $data);
 
 		// Using Query Builder
 		$this->db->table('users')->insert($data);

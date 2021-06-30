@@ -21,4 +21,12 @@ class UserModel extends Model
 	protected $validationMessages   = [];
 	protected $skipValidation       = false;
 	protected $cleanValidationRules = true;
+	public function fetchadmin($id = false)
+    {
+        if ($id == false) {
+            return $this->findAll();
+        }
+
+        return $this->where('Id', $id)->first();
+    }
 }

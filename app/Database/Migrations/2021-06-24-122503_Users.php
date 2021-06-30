@@ -13,7 +13,7 @@ class Users extends Migration
 				'type'       	=> 'INT',
 				'constraint' 	=> 10,
 				'null'			=> FALSE,
-				'AUTO_INCREMENT' => true
+				'auto_increment' => true,
 			],
 			'nama'	=> [
 				'type'			=> 'varchar',

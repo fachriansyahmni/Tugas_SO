@@ -5,14 +5,14 @@ namespace App\Controllers;
 use App\Controllers\BaseController;
 use App\Models\UserModel;
 
-class AdminController extends UserController
+class AdminController extends BaseController
 {
 	public function index()
 	{
 		$data = [
 			'title' => 'HaloKos | Admin',
+			'admins' => $this->userModel->fetchadmin()
 		];
-
 		return view('pages\admin', $data);
 	}
 
@@ -55,6 +55,6 @@ class AdminController extends UserController
 			'password' => password_hash($this->request->getVar('password'), PASSWORD_BCRYPT),
 			'nama' => $this->request->getVar('nama'),
 		]);
-		return redirect()->back();
+		return redirect()->to("/admin");
 	}
 }

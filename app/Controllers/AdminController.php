@@ -16,6 +16,10 @@ class AdminController extends BaseController
 		return view('pages\admin', $data);
 	}
 
+	public function getDataAdmin(){
+		echo json_encode ($this->userModel->fetchadmin($_POST['id']));
+	}
+
 
 	public function process()
 	{
@@ -57,4 +61,29 @@ class AdminController extends BaseController
 		]);
 		return redirect()->to("/admin");
 	}
+
+	public function update($id){
+		$dataAdmin = $this->userModel->fetchadmin($id);
+		if($this->request->getVar('password') == "") {
+			$this->userModel->update($id, [
+				'nama'		=> $this->request->getVar('nama'),
+				'username'	=> $this->request->getVar('username'),
+				'password'	=> $dataAdmin['password']
+			]);
+		} else {
+			$this->userModel->update($id, [
+				'nama'		=> $this->request->getVar('nama'),
+				'username'	=> $this->request->getVar('username'),
+				'password'	=> $this->request->getVar('password')
+			]);
+		}
+		return redirect()->to('/admin');
+	}
+
+	public function delete($id){
+		$this->userModel->delete($id);
+
+		return redirect()->to('/admin');
+	}
+
 }

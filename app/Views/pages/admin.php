@@ -31,25 +31,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php
+                        <?php
                         $no = 1;
                         foreach ($admins as $admin) :
                         ?>
 
-                        <tr>
-                            <th scope="row"><?= $no++ ?></th>
-                            <td><?= $admin['nama'] ?></td>
-                            <td><?= $admin['username'] ?></td>
-                            <td><?= $admin['password'] ?></td>
-                            <td>
-                                <button type="button" class="btn btn-success">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button type="button" class="btn btn-danger">
-                                    <i class="far fa-trash-alt"></i>
-                                </button>
-                            </td>
-                        </tr>
+                            <tr>
+                                <th scope="row"><?= $no++ ?></th>
+                                <td><?= $admin['nama'] ?></td>
+                                <td><?= $admin['username'] ?></td>
+                                <td><?= $admin['password'] ?></td>
+                                <td>
+                                    <button type="button" class="btn btn-success">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                </td>
+                            </tr>
                         <?php
                         endforeach;
                         ?>

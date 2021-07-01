@@ -26,7 +26,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ml-auto">
         <a class="btn btn-success mr-2" href="https://wa.link/37qy6j" target="_blank">WhatsApp</a>
-        <a class="btn btn-primary" href="/login">Log In</a>
+        <a class="btn btn-primary" href="/login" target="_blank">Log In</a>
       </div>
     </div>
   </div>

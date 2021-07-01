@@ -120,7 +120,7 @@
   </div>
   <div class="row mb-5 mt-5">
     <div class="col-12 text-center">
-      <hr class="mb-3">
+      <hr class="mb-3" style="margin-top: 50px;">
       <p>Copyright © 2021. HaloKos. All RIght Reserved</p>
     </div>
   </div>

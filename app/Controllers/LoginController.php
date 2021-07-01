@@ -27,7 +27,7 @@ class LoginController extends BaseController
 					'nama' => $dataUser["nama"],
 					'logged_in' => TRUE
 				]);
-				return redirect()->to(base_url('/'));
+				return redirect()->to('/dashboard');
 			} else {
 				session()->setFlashdata('error', 'Username & Password Salah');
 				return redirect()->back();

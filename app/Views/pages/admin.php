@@ -42,10 +42,10 @@
                                 <td><?= $admin['username'] ?></td>
                                 <td><?= $admin['password'] ?></td>
                                 <td>
-                                    <button type="button" class="btn btn-success">
+                                    <button type="button" class="btn btn-success edit" data-toggle="modal" data-target="#modalAdd" data-id="<?= $admin['id'] ?>">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <button type="button" class="btn btn-danger">
+                                    <button type="button" class="btn btn-danger hapus" data-toggle="modal" data-target="#modalHapus" data-href="AdminController/delete/<?= $admin['id'] ?>">
                                         <i class="far fa-trash-alt"></i>
                                     </button>
                                 </td>
@@ -99,5 +99,67 @@
     </div>
 </div>
 <!-- End Modal Add -->
+
+<!-- Modal Hapus -->
+<div class="modal fade" id="modalHapus" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title-hapus" id="exampleModalLabel">Apakah anda yakin akan menghapus data ini?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-footer d-inline text-center">
+                <a class="btn btn-danger btn-ok">Delete</a>
+                <button type="button" class="btn btn-success" data-dismiss="modal">Cencel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal Hapus -->
+
+<script>
+    $(document).ready(function() {
+        //insert
+        $("#tambah").on("click", function() {
+            $(".modal-title").html("Tambah Admin");
+            $("form").attr("action", "AdminController/proses");
+
+            //remove data in modal
+            $("#nama").val('');
+            $("#username").val('');
+            $("#password").val('');
+        });
+
+        //update
+        $(".edit").on("click", function() {
+            const id = $(this).data('id');
+
+            $(".modal-title").html("Ubah Admin");
+            $("form").attr("action", "AdminController/update/" + id);
+
+            $.ajax({
+                url: "AdminController/getDataAdmin",
+                data: {
+                    id: id,
+                },
+                method: "POST",
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+                    $('#nama').val(data.nama);
+                    $('#username').val(data.username);
+                },
+
+            });
+        });
+
+        //delete
+        $("#modalHapus").on("show.bs.modal", function(e) {
+            $('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+        })
+    });
+</script>
 
 <?= $this->endSection(); ?>

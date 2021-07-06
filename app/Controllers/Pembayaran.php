@@ -37,10 +37,10 @@ class Pembayaran extends Sewa
                 'IdRiwayatSewa'     => $this->pembayaranModel->generateIdRiwayatSewa(),
                 'TanggalPembayaran' => $tglPembayaran,
                 'TanggalSewa'       => $dataSewa["TanggalSewa"],
-                'TanggalAkhirSewa'  => $dataSewa["TanggalAkhirSewa"],
+                'LamaSewa'          => $dataSewa["LamaSewa"],
                 'GrandTotal'        => $dataSewa["GrandTotal"],
-                'status_sewa'         => $dataSewa["status_sewa"],
-                'IdSewa'           => $idSewa
+                'status_sewa'       => $dataSewa["status_sewa"],
+                'IdSewa'            => $idSewa
             ]);
         }
         return redirect()->to('/pembayaran');

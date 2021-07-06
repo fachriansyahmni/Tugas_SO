@@ -22,8 +22,8 @@ class Sewa extends Migration
 				'type'       	=> 'DATE',
 				'null' 			=> FALSE
 			],
-			'TanggalAkhirSewa'       => [
-				'type'       	=> 'DATE',
+			'LamaSewa'       => [
+				'type'       	=> 'INTEGER',
 				'null' 			=> FALSE
 			],
 			'GrandTotal'    => [

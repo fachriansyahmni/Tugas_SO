@@ -32,8 +32,7 @@ class Sewa extends BaseController
     public function save()
     {
         $idSewa         = $this->sewaModel->generateIdSewa();
-        $tglSewa        = $this->request->getVar('awalSewa');
-        $tglAkhirSewa   = $this->request->getVar('akhirSewa');
+        $lamaSewa       = $this->request->getVar('lamasewa');
         $noKamar        = $this->request->getVar('kamar');
         $idPenyewa      = $this->penyewaModel->generateIdPenyewa();
         $nama           = $this->request->getVar('nama');
@@ -53,17 +52,14 @@ class Sewa extends BaseController
         //get table kamar
         $kamar = $this->kamarModel->fetchkamar($noKamar);
 
-        //get interval
-        $lamaSewa = date_diff(date_create($tglSewa), date_create($tglAkhirSewa))->format('%a');
-
         //calculate grandTotal
         $grandTotal = $lamaSewa * $kamar['Harga'];
 
         //Insert Table Sewa
         $this->sewaModel->insert([
             'IdSewa'            => $idSewa,
-            'TanggalSewa'       => $tglSewa,
-            'TanggalAkhirSewa'  => $tglAkhirSewa,
+            'TanggalSewa'       => date("Y-m-d"),
+            'LamaSewa'          => $lamaSewa,
             'GrandTotal'        => $grandTotal,
             'IdPenyewa'         => $idPenyewa,
             'NoKamar'           => $noKamar

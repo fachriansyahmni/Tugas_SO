@@ -9,7 +9,7 @@ class SewaModel extends Model
     protected $table      = 'sewa';
     protected $primaryKey = 'IdSewa';
 
-    protected $allowedFields  = ['IdSewa', 'TanggalPembayaran', 'TanggalSewa', 'TanggalAkhirSewa', 'GrandTotal', 'status_sewa', 'IdPenyewa', 'NoKamar'];
+    protected $allowedFields  = ['IdSewa', 'TanggalPembayaran', 'TanggalSewa', 'LamaSewa', 'GrandTotal', 'status_sewa', 'IdPenyewa', 'NoKamar'];
 
     public function fetchSewaJoin($id = false)
     {

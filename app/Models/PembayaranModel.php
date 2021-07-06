@@ -9,7 +9,7 @@ class PembayaranModel extends SewaModel
     protected $table      = 'riwayat_sewa';
     protected $primaryKey = 'IdRiwayatSewa';
 
-    protected $allowedFields  = ['IdRiwayatSewa', 'TanggalPembayaran', 'TanggalSewa', 'TanggalAkhirSewa', 'GrandTotal', 'status_sewa', 'IdSewa'];
+    protected $allowedFields  = ['IdRiwayatSewa', 'TanggalPembayaran', 'TanggalSewa', 'LamaSewa', 'GrandTotal', 'status_sewa', 'IdSewa'];
 
     public function generateIdRiwayatSewa()
     {

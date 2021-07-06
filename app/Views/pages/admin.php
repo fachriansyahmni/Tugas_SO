@@ -42,7 +42,7 @@
                                 <td><?= $admin['username'] ?></td>
                                 <td><?= $admin['password'] ?></td>
                                 <td>
-                                    <button type="button" class="btn btn-success edit" data-toggle="modal" data-target="#modalAdd" data-id="<?= $admin['id'] ?>">
+                                    <button type="button" class="btn btn-success edit mb-2" data-toggle="modal" data-target="#modalAdd" data-id="<?= $admin['id'] ?>">
                                         <i class="fas fa-edit"></i>
                                     </button>
                                     <button type="button" class="btn btn-danger hapus" data-toggle="modal" data-target="#modalHapus" data-href="AdminController/delete/<?= $admin['id'] ?>">

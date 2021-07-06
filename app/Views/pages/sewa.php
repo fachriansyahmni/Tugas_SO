@@ -26,7 +26,7 @@
                             <th scope="col">NO</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Kamar</th>
-                            <th scope="col">Jatuh Tempo</th>
+                            <th scope="col">Lama Sewa</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
@@ -40,25 +40,7 @@
                                 <th scope="row"><?= $no++; ?></th>
                                 <td><?= $s['NamaPenyewa'] ?></td>
                                 <td><?= $s['NoKamar'] ?></td>
-
-                                <?php
-                                if ($s['TanggalAkhirSewa'] == date('Y-m-d')) {
-                                ?>
-
-                                    <td>
-                                        <button type="button" class="btn btn-warning mr-3">Kirim Pesan</button>
-                                        <button type="button" class="btn btn-success perpanjang" data-toggle="modal" data-target="#modalPerpanjang" data-id="<?= $s['IdSewa'] ?>">Perpanjang</button>
-                                    </td>
-
-                                <?php
-                                } else {
-                                ?>
-                                    <td><?= $s['TanggalAkhirSewa'] ?></td>
-
-                                <?php
-                                }
-                                ?>
-
+                                <td><?= $s['LamaSewa'] ?> Bulan</td>
                                 <td>
                                     <button type="button" class="btn btn-success edit" data-toggle="modal" data-target="#modalAdd" data-id="<?= $s['IdPenyewa'] ?>">
                                         <i class="fas fa-edit"></i>
@@ -116,41 +98,51 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="telepon">No Telepon</label>
-                        <input type="text" class="form-control" id="telepon" name="telepon">
-                    </div>
-                    <div class="form-group">
-                        <label for="alamat">Alamat</label>
-                        <textarea class="form-control" id="alamat" name="alamat" rows="5"></textarea>
-                    </div>
-                    <div class="form-grup kamar">
-                        <label for="kamar">Kamar</label>
-                        <select id="kamar" class="form-control" name="kamar">
-                            <option selected>-- Pilih Kamar --</option>
-
-                            <?php
-                            foreach ($kamar as $k) :
-                            ?>
-                                <option value="<?= $k["NoKamar"] ?>" <?= $k['status_kamar'] != 0 ? 'disabled' : '' ?>><?= $k["NoKamar"] ?> <?= $k['status_kamar'] != 0 ? '(tidak tersedia)' : '' ?></option>
-
-                            <?php
-                            endforeach;
-                            ?>
-
-                        </select>
-                    </div>
-                    <div class="row mt-3 tanggal">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="awalSewa">Tanggal Awal Sewa</label>
-                                <input type="date" class="form-control" id="awalSewa" name="awalSewa">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="telepon">No Telepon</label>
+                                <input type="text" class="form-control" id="telepon" name="telepon">
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="akhirSewa">Tanggal Akhir Sewa</label>
-                                <input type="date" class="form-control" id="akhirSewa" name="akhirSewa">
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="alamat">Alamat</label>
+                                <textarea class="form-control" id="alamat" name="alamat" rows="5"></textarea>
                             </div>
+                        </div>
+                    </div>
+                    <div class="form-grup kamar">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="kamar">Kamar</label>
+                                <select id="kamar" class="form-control" name="kamar">
+                                    <option selected>-- Pilih Kamar --</option>
+
+                                    <?php
+                                    foreach ($kamar as $k) :
+                                    ?>
+                                        <option value="<?= $k["NoKamar"] ?>" <?= $k['status_kamar'] != 0 ? 'disabled' : '' ?>><?= $k["NoKamar"] ?> <?= $k['status_kamar'] != 0 ? '(tidak tersedia)' : '' ?></option>
+
+                                    <?php
+                                    endforeach;
+                                    ?>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3 tanggal">
+                        <div class="col-md-11">
+                            <div class="form-group">
+                                <label for="lamasewa">Lama Sewa</label>
+                                <input type="number" min="1" class="form-control" id="lamasewa" name="lamasewa">
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <br>
+                            <p class="mt-3" style="margin-left: -10px;">Bulan</p>
                         </div>
                     </div>
                 </div>
@@ -193,17 +185,21 @@
                     <input type="text" class="form-control nokamar" readonly></input>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <label for="awalSewa">Tanggal Awal Sewa</label>
                             <input type="date" class="form-control awalSewa" readonly>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-11">
                         <div class="form-group">
-                            <label for="akhirSewa">Tanggal Akhir Sewa</label>
-                            <input type="date" class="form-control akhirSewa" readonly>
+                            <label for="lamasewa">Lama Sewa</label>
+                            <input type="text" class="form-control lamasewa" readonly>
                         </div>
+                    </div>
+                    <div class="col-md-1">
+                        <br>
+                        <p class="mt-3" style="margin-left: -10px;">Bulan</p>
                     </div>
                 </div>
             </div>
@@ -347,7 +343,7 @@
                     $("#jk").val(response.JenisKelamin);
                     $(".nokamar").val(response.NoKamar);
                     $(".awalSewa").val(response.TanggalSewa);
-                    $(".akhirSewa").val(response.TanggalAkhirSewa);
+                    $(".lamasewa").val(response.LamaSewa);
                 }
             });
         });

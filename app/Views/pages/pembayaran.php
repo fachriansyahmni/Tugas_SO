@@ -106,9 +106,15 @@
                                                         </h5>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="tanggal" class="col-md-3">Lama Sewa</label>
+                                                        <label for="tanggal" class="col-md-3">Tanggal Sewa</label>
                                                         <input type="date" class="form-control col-md-4" readonly value="<?= $pmbyrn["TanggalSewa"] ?>" name="awalSewa">
-                                                        <input type="date" class="form-control col-md-4" readonly value="<?= $pmbyrn["TanggalAkhirSewa"] ?>" name="akhirSewa">
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="lamasewa" class="col-md-3">Lama Sewa</label>
+                                                        <input type="text" class="form-control col-md-4" readonly value="<?= $pmbyrn["LamaSewa"] ?>" name="lamasewa">
+                                                        <div class="col-md-1">
+                                                            <p class="mt-2" style="margin-left: -10px;">Bulan</p>
+                                                        </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="harga" class="col-md-3">Harga</label>
@@ -123,7 +129,7 @@
                                                     <?php
                                                     if ($pmbyrn["status_pembayaran"] != "Lunas") {
                                                     ?>
-                                                        <button type="button" class="btn btn-success">Kirim Pesan</button>
+                                                        <a href="https://wa.me/<?= $pmbyrn['NoTelp'] ?>/?text=Kepada <?= urlencode($pmbyrn['NamaPenyewa']) ?> mohon untuk segera melakukan pembayaran!, terimakasih" target="_blank" class="btn btn-success">Kirim Pesan</a>
                                                     <?php } ?>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                                 </div>

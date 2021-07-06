@@ -94,8 +94,8 @@
       <img src="<?= base_url('assets') ?>/images/kos1.png">
     </div>
     <div class="col-md-5 offset-md-1">
-      <h3 style="color: #000; font-weight: bold; line-height: 2.3rem;">Mau Cari Kos-Kosan?</h3>
-      <p style="line-height: 1.8rem;">
+      <h3 style="color: #000; font-weight: bold; line-height: 2.5rem;">Mau Cari Kos-Kosan?</h3>
+      <p style="line-height: 2.2rem;">
         Halokos merupakan pilihan yang tepat untuk untuk anda huni. Halokos memiliki lokasi yang strategis , selain itu halokos juga memiliki sistem keamanan 24 jam non stop, serta halokos memiliki fasilitas yang lengkap dan harga yang terjangkau. maka dari itu tunggu apa lagi!.
       </p>
       <a href="https://wa.link/37qy6j" target="_blank" class="btn btn-success">WhatsApp</a>

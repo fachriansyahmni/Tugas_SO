@@ -20,7 +20,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body style="background: linear-gradient(90deg, hsla(225, 68%, 58%, 1) 0%, hsla(204, 84%, 66%, 1) 100%);">
 
     <div class="container">
 
@@ -29,17 +29,17 @@
 
             <div class="col-xl-10 col-lg-12 col-md-9">
 
-                <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card o-hidden border-0 shadow-lg my-5" style="height: 50vh;">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
-                        <div class="row">
+                        <div class="row h-100 align-items-center">
                             <div class="col-lg-6 d-none d-lg-block">
                                 <img src="<?= base_url('assets') ?>/images/home.png" style="margin-top: 25px; margin-left: 60px;">
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        <h1 class="h3 text-gray-900 mb-4 fw-bold">Please Sign IN</h1>
                                         <?php if (!empty(session()->getFlashdata('error'))) : ?>
                                             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                                                 <?php echo session()->getFlashdata('error'); ?>
@@ -55,7 +55,6 @@
                                             <input type="password" class="form-control form-control-user" name="password" placeholder="Enter Your Password...">
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
-                                        <hr>
                                     </form>
                                 </div>
                             </div>

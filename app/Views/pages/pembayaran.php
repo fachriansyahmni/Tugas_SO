@@ -129,7 +129,7 @@
                                                     <?php
                                                     if ($pmbyrn["status_pembayaran"] != "Lunas") {
                                                     ?>
-                                                        <a href="https://wa.me/<?= $pmbyrn['NoTelp'] ?>/?text=Kepada <?= urlencode($pmbyrn['NamaPenyewa']) ?> mohon untuk segera melakukan pembayaran!, terimakasih" target="_blank" class="btn btn-success">Kirim Pesan</a>
+                                                        <a href="https://wa.me/<?= $pmbyrn['NoTelp'] ?>/?text=Kepada <?= urlencode($pmbyrn['NamaPenyewa']) ?> mohon untuk segera melakukan pembayaran!, dengan total tagihan <?= rupiah($pmbyrn['GrandTotal']) ?>, terimakasih" target="_blank" class="btn btn-success">Kirim Pesan</a>
                                                     <?php } ?>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                                 </div>

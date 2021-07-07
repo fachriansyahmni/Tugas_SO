@@ -94,7 +94,7 @@
       <img src="<?= base_url('assets') ?>/images/kos1.png">
     </div>
     <div class="col-md-5 offset-md-1">
-      <h3 style="color: #000; font-weight: bold; line-height: 2.5rem;">Mau Cari Kos-Kosan?</h3>
+      <h2 style="color: #000; font-weight: bold; line-height: 2.5rem;">Mau Cari Kos-Kosan?</h2>
       <p style="line-height: 2.2rem;">
         Halokos merupakan pilihan yang tepat untuk untuk anda huni. Halokos memiliki lokasi yang strategis , selain itu halokos juga memiliki sistem keamanan 24 jam non stop, serta halokos memiliki fasilitas yang lengkap dan harga yang terjangkau. maka dari itu tunggu apa lagi!.
       </p>
@@ -103,7 +103,7 @@
   </div>
   <div class="row mt-5 mb-5">
     <div class="col-12 text-center">
-      <h3 style="color: #000; font-weight: bold; margin-top: 50px;">Galeri</h3>
+      <h2 style="color: #000; font-weight: bold; margin-top: 50px;">Galeri</h2>
       <p>
         Foto ini dari beberapa bangunan <br> yang terdapat di HaloKos
       </p>

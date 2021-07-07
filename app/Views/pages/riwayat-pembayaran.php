@@ -47,11 +47,63 @@
                                         <h5><span class="badge badge-success w-100 py-2">Lunas</span></h5>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalDetail">
+                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalDetail<?= $index ?>">
                                             <i class="fas fa-eye"></i>
                                         </button>
                                     </td>
                                 </tr>
+
+                                <!-- Modal Detail -->
+                                <div class="modal fade" id="modalDetail<?= $index ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Detail Pembayaran</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <form action="#">
+                                                <div class="modal-body">
+                                                    <div class="form-group row">
+                                                        <label for="id" class="col-md-3">No Transaksi</label>
+                                                        <input type="text" class="form-control col-md-8" id="id" name="id" value="<?= $riwayatPembayaran['IdSewa'] ?>">
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="nama" class="col-md-3">Nama Penghuni</label>
+                                                        <input type="text" class="form-control col-md-8" id="nama" name="nama">
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="kamar" class="col-md-3">No Kamar</label>
+                                                        <input type="number" class="form-control col-md-8" id="kamar" name="kamar">
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="kamar" class="col-md-3">Status</label>
+                                                        <h5><span class="badge badge-success py-2 col-md-12">Lunas</span></h5>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="tanggal" class="col-md-3">Lama Sewa</label>
+                                                        <input type="date" class="form-control col-md-4" name="awalSewa">
+                                                        <input type="date" class="form-control col-md-4" name="akhirSewa">
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="harga" class="col-md-3">Harga</label>
+                                                        <input type="number" class="form-control col-md-8" id="harga" name="harga">
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="total" class="col-md-3">Total Harga</label>
+                                                        <input type="number" class="form-control col-md-8" id="total" name="harga">
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                    <button type="button" class="btn btn-primary">Simpan</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Modal Detail -->
                             <?php endforeach; ?>
                             <!-- <tr>
                             <th scope="row">2</th>
@@ -79,57 +131,5 @@
 
 </div>
 <!-- End Content Row -->
-
-<!-- Modal Detail -->
-<div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Detail Pembayaran</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="#">
-                <div class="modal-body">
-                    <div class="form-group row">
-                        <label for="id" class="col-md-3">No Transaksi</label>
-                        <input type="text" class="form-control col-md-8" id="id" name="id">
-                    </div>
-                    <div class="form-group row">
-                        <label for="nama" class="col-md-3">Nama Penghuni</label>
-                        <input type="text" class="form-control col-md-8" id="nama" name="nama">
-                    </div>
-                    <div class="form-group row">
-                        <label for="kamar" class="col-md-3">No Kamar</label>
-                        <input type="number" class="form-control col-md-8" id="kamar" name="kamar">
-                    </div>
-                    <div class="form-group row">
-                        <label for="kamar" class="col-md-3">Status</label>
-                        <h5><span class="badge badge-success py-2 col-md-12">Lunas</span></h5>
-                    </div>
-                    <div class="form-group row">
-                        <label for="tanggal" class="col-md-3">Lama Sewa</label>
-                        <input type="date" class="form-control col-md-4" name="awalSewa">
-                        <input type="date" class="form-control col-md-4" name="akhirSewa">
-                    </div>
-                    <div class="form-group row">
-                        <label for="harga" class="col-md-3">Harga</label>
-                        <input type="number" class="form-control col-md-8" id="harga" name="harga">
-                    </div>
-                    <div class="form-group row">
-                        <label for="total" class="col-md-3">Total Harga</label>
-                        <input type="number" class="form-control col-md-8" id="total" name="harga">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="button" class="btn btn-primary">Simpan</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- End Modal Detail -->
 
 <?= $this->endSection(); ?>

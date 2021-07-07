@@ -61,13 +61,18 @@
                                             ?>
                                                 <form action="/bayar" method="post">
                                                     <input type="hidden" name="idSewa" value="<?= $pmbyrn["IdSewa"] ?>" id="">
-                                                    <button type="submit" class="btn btn-success mr-3">
+                                                    <button type="submit" class="btn btn-success mr-2">
                                                         <i class="fas fa-check"></i>
                                                     </button>
                                                 </form>
                                             <?php
                                             }
                                             ?>
+                                            <?php
+                                            if ($pmbyrn["status_pembayaran"] != "Lunas") {
+                                            ?>
+                                                <a href="https://wa.me/<?= $pmbyrn['NoTelp'] ?>/?text=Kepada <?= urlencode($pmbyrn['NamaPenyewa']) ?> mohon untuk segera melakukan pembayaran!, dengan total tagihan <?= rupiah($pmbyrn['GrandTotal']) ?>, terimakasih" target="_blank" class="btn btn-primary mr-2"><i class="fas fa-paper-plane"></i></a>
+                                            <?php } ?>
                                             <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modalDetail<?= $index ?>">
                                                 <i class="fas fa-eye"></i>
                                             </button>
@@ -126,11 +131,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <?php
-                                                    if ($pmbyrn["status_pembayaran"] != "Lunas") {
-                                                    ?>
-                                                        <a href="https://wa.me/<?= $pmbyrn['NoTelp'] ?>/?text=Kepada <?= urlencode($pmbyrn['NamaPenyewa']) ?> mohon untuk segera melakukan pembayaran!, dengan total tagihan <?= rupiah($pmbyrn['GrandTotal']) ?>, terimakasih" target="_blank" class="btn btn-success">Kirim Pesan</a>
-                                                    <?php } ?>
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                                 </div>
                                             </form>

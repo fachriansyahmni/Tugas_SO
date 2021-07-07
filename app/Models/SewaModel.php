@@ -55,7 +55,7 @@ class SewaModel extends Model
     public function fetchPembayaran($id = false)
     {
         if ($id == false) {
-            $result = $this->fetchSewaJoin();
+            $result = $this->fetchSewaJoinByStatus();
             foreach ($result as $index => $pembayaran) {
                 $pembayaran["penyewa"] = $this->getDataPenyewa($pembayaran["IdPenyewa"])["NamaPenyewa"];
                 $pembayaran["status_pembayaran"] = $this->checkStatusPembayaran($pembayaran["TanggalPembayaran"]);

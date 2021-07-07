@@ -70,9 +70,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tambah Admin</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <form method="post" action="<?= base_url(); ?>/admin/register/process">
                 <?= csrf_field(); ?>
@@ -106,9 +103,6 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title-hapus" id="exampleModalLabel">Apakah anda yakin akan menghapus data ini?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div class="modal-footer d-inline text-center">
                 <a class="btn btn-danger btn-ok">Delete</a>

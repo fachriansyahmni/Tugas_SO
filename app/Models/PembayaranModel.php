@@ -31,6 +31,7 @@ class PembayaranModel extends SewaModel
         if ($id == false) {
             $result = $this->join('sewa', 'sewa.IdSewa = riwayat_sewa.IdSewa')
                 ->join('penyewa', 'penyewa.IdPenyewa = sewa.IdPenyewa')
+                ->join('kamar', 'kamar.NoKamar = sewa.NoKamar')
                 ->findAll();
 
             return $result;

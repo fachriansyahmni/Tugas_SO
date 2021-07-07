@@ -59,45 +59,47 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">Detail Pembayaran</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
                                             </div>
                                             <form action="#">
                                                 <div class="modal-body">
                                                     <div class="form-group row">
                                                         <label for="id" class="col-md-3">No Transaksi</label>
-                                                        <input type="text" class="form-control col-md-8" id="id" name="id" value="<?= $riwayatPembayaran['IdSewa'] ?>">
+                                                        <input type="text" class="form-control col-md-8" id="id" name="id" value="<?= $riwayatPembayaran['IdSewa'] ?>" readonly>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="nama" class="col-md-3">Nama Penghuni</label>
-                                                        <input type="text" class="form-control col-md-8" id="nama" name="nama">
+                                                        <input type="text" class="form-control col-md-8" id="nama" name="nama" value="<?= $riwayatPembayaran['NamaPenyewa'] ?>" readonly>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="kamar" class="col-md-3">No Kamar</label>
-                                                        <input type="number" class="form-control col-md-8" id="kamar" name="kamar">
+                                                        <input type="number" class="form-control col-md-8" id="kamar" name="kamar" value="<?= $riwayatPembayaran['NoKamar'] ?>" readonly>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="kamar" class="col-md-3">Status</label>
-                                                        <h5><span class="badge badge-success py-2 col-md-12">Lunas</span></h5>
+                                                        <h5><span class="badge badge-success py-2 col-md-12"><?= ($riwayatPembayaran['TanggalPembayaran'] == null ? "Belum Lunas" : "Lunas"); ?></span></h5>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label for="tanggal" class="col-md-3">Lama Sewa</label>
-                                                        <input type="date" class="form-control col-md-4" name="awalSewa">
-                                                        <input type="date" class="form-control col-md-4" name="akhirSewa">
+                                                        <label for="tanggal" class="col-md-3">Tanggal Sewa</label>
+                                                        <input type="date" class="form-control col-md-4" readonly value="<?= $riwayatPembayaran["TanggalSewa"] ?>" name="awalSewa">
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="lamasewa" class="col-md-3">Lama Sewa</label>
+                                                        <input type="text" class="form-control col-md-4" readonly value="<?= $riwayatPembayaran["LamaSewa"] ?>" name="lamasewa">
+                                                        <div class="col-md-1">
+                                                            <p class="mt-2" style="margin-left: -10px;">Bulan</p>
+                                                        </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="harga" class="col-md-3">Harga</label>
-                                                        <input type="number" class="form-control col-md-8" id="harga" name="harga">
+                                                        <input type="text" class="form-control col-md-8" id="harga" name="harga" value="<?= rupiah($riwayatPembayaran['Harga']) ?>" readonly>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="total" class="col-md-3">Total Harga</label>
-                                                        <input type="number" class="form-control col-md-8" id="total" name="harga">
+                                                        <input type="text" class="form-control col-md-8" id="total" name="harga" value="<?= rupiah($riwayatPembayaran['GrandTotal']) ?>" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                                    <button type="button" class="btn btn-primary">Simpan</button>
                                                 </div>
                                             </form>
                                         </div>

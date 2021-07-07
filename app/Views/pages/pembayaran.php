@@ -86,9 +86,6 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">Detail Pembayaran</h5>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
                                             </div>
                                             <form action="#">
                                                 <div class="modal-body">
@@ -123,11 +120,11 @@
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="harga" class="col-md-3">Harga</label>
-                                                        <input type="text" class="form-control col-md-8" readonly id="harga" value="<?= $pmbyrn["Harga"] ?>">
+                                                        <input type="text" class="form-control col-md-8" readonly id="harga" value="<?= rupiah($pmbyrn["Harga"]) ?>">
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="total" class="col-md-3">Total Harga</label>
-                                                        <input type="number" class="form-control col-md-8" id="total" readonly value="<?= $pmbyrn["GrandTotal"] ?>" name="totalharga">
+                                                        <input type="text" class="form-control col-md-8" id="total" readonly value="<?= rupiah($pmbyrn["GrandTotal"]) ?>" name="totalharga">
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">

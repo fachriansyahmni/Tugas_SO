@@ -89,4 +89,9 @@ class SewaModel extends Model
     {
         return $this->selectCount('IdSewa')->where('TanggalPembayaran =', NULL)->get()->getRow()->IdSewa;
     }
+
+    public function countPenyewa()
+    {
+        return $this->selectCount('IdSewa')->where('status_sewa', 1)->get()->getRow()->IdSewa;
+    }
 }

@@ -9,7 +9,7 @@ class Dashboard extends BaseController
         $data = [
             'title' => 'HaloKos | Dashboard',
             'kamar' =>  $this->kamarModel->countKamar(),
-            'penyewa' => $this->penyewaModel->countPenyewa(),
+            'penyewa' => $this->sewaModel->countPenyewa(),
             'lunas' => $this->sewaModel->countLunas(),
             'nunggak' => $this->sewaModel->countNuggak()
         ];

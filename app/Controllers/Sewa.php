@@ -16,7 +16,7 @@ class Sewa extends BaseController
 
         ];
 
-        return view('pages\Sewa', $data);
+        return view('pages/Sewa', $data);
     }
 
     public function getDataSewa()

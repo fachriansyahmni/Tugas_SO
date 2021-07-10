@@ -11,7 +11,7 @@ class Pembayaran extends Sewa
             'title' => 'HaloKos | Pembayaran',
             'pembayaran' => $this->sewaModel->fetchPembayaran()
         ];
-        return view('pages\pembayaran', $data);
+        return view('pages/pembayaran', $data);
     }
     public function riwayatIndex()
     {
@@ -19,7 +19,7 @@ class Pembayaran extends Sewa
             'title' => 'HaloKos | Riwayat Pembayaran',
             'riwayatPembayarans' => $this->pembayaranModel->fetchPembayaranJoin()
         ];
-        return view('pages\riwayat-pembayaran', $data);
+        return view('pages/riwayat-pembayaran', $data);
     }
 
 

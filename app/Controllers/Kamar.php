@@ -11,7 +11,7 @@ class Kamar extends BaseController
             'kamar' => $this->kamarModel->fetchKamar()
         ];
 
-        return view('pages\kamar', $data);
+        return view('pages/kamar', $data);
     }
 
     public function getDataKamar()

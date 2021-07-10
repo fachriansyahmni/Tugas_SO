@@ -14,6 +14,6 @@ class Dashboard extends BaseController
             'nunggak' => $this->sewaModel->countNuggak()
         ];
 
-        return view('pages\dashboard', $data);
+        return view('pages/dashboard', $data);
     }
 }

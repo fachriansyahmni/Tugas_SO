@@ -13,11 +13,12 @@ class AdminController extends BaseController
 			'title' => 'HaloKos | Admin',
 			'admins' => $this->userModel->fetchadmin()
 		];
-		return view('pages\admin', $data);
+		return view('pages/admin', $data);
 	}
 
-	public function getDataAdmin(){
-		echo json_encode ($this->userModel->fetchadmin($_POST['id']));
+	public function getDataAdmin()
+	{
+		echo json_encode($this->userModel->fetchadmin($_POST['id']));
 	}
 
 
@@ -62,9 +63,10 @@ class AdminController extends BaseController
 		return redirect()->to("/admin");
 	}
 
-	public function update($id){
+	public function update($id)
+	{
 		$dataAdmin = $this->userModel->fetchadmin($id);
-		if($this->request->getVar('password') == "") {
+		if ($this->request->getVar('password') == "") {
 			$this->userModel->update($id, [
 				'nama'		=> $this->request->getVar('nama'),
 				'username'	=> $this->request->getVar('username'),
@@ -80,10 +82,10 @@ class AdminController extends BaseController
 		return redirect()->to('/admin');
 	}
 
-	public function delete($id){
+	public function delete($id)
+	{
 		$this->userModel->delete($id);
 
 		return redirect()->to('/admin');
 	}
-
 }

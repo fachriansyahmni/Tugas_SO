@@ -80,7 +80,7 @@
                 <div class="modal-body">
                     <div class="form-group nama">
                         <label for="nama">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama">
+                        <input type="text" class="form-control" id="nama" name="nama" required>
                     </div>
                     <div class="row mb-3 jk">
                         <div class="col-md-12">
@@ -88,11 +88,11 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="jk" id="jk_l" value="Laki-Laki">
+                                <input class="form-check-input" type="radio" name="jk" id="jk_l" value="Laki-Laki" required>
                                 <label class="form-check-label" for="jk_l">Laki-Laki</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="jk" id="jk_p" value="Perempuan">
+                                <input class="form-check-input" type="radio" name="jk" id="jk_p" value="Perempuan" required>
                                 <label class="form-check-label" for="jk_p">Perempuan</label>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="telepon">No Telepon</label>
-                                <input type="text" class="form-control" id="telepon" name="telepon">
+                                <input type="text" class="form-control" id="telepon" name="telepon" required>
                             </div>
                         </div>
                     </div>
@@ -109,7 +109,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="alamat">Alamat</label>
-                                <textarea class="form-control" id="alamat" name="alamat" rows="5"></textarea>
+                                <textarea class="form-control" id="alamat" name="alamat" rows="5" required></textarea>
                             </div>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <label for="kamar">Kamar</label>
-                                <select id="kamar" class="form-control" name="kamar">
+                                <select id="kamar" class="form-control" name="kamar" required>
                                     <option selected>-- Pilih Kamar --</option>
 
                                     <?php
@@ -137,7 +137,7 @@
                         <div class="col-md-11">
                             <div class="form-group">
                                 <label for="lamasewa">Lama Sewa</label>
-                                <input type="number" min="1" class="form-control" id="lamasewa" name="lamasewa">
+                                <input type="number" min="1" class="form-control" id="lamasewa" name="lamasewa" required>
                             </div>
                         </div>
                         <div class="col-md-1">
@@ -175,11 +175,11 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="jk" id="ubahjk_l" value="Laki-Laki">
+                                <input class="form-check-input" type="radio" name="ubahjk" id="ubahjk_l" value="Laki-Laki">
                                 <label class="form-check-label" for="jk_l">Laki-Laki</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="jk" id="ubahjk_p" value="Perempuan">
+                                <input class="form-check-input" type="radio" name="ubahjk" id="ubahjk_p" value="Perempuan">
                                 <label class="form-check-label" for="jk_p">Perempuan</label>
                             </div>
                         </div>
@@ -323,9 +323,9 @@
                     $('#ubahtelepon').val(response.NoTelp);
                     $('#ubahalamat').val(response.Alamat);
                     if (response.JenisKelamin == 'Laki-Laki') {
-                        $("[name='jk'][value='Laki-Laki'").prop('checked', true)
+                        $("[name='ubahjk'][value='Laki-Laki'").prop('checked', true)
                     } else {
-                        $("[name='jk'][value='Perempuan'").prop('checked', true)
+                        $("[name='ubahjk'][value='Perempuan'").prop('checked', true)
                     }
                 },
 

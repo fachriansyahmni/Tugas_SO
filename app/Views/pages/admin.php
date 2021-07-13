@@ -17,7 +17,7 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">Daftar Admin</h6>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAdd">Tambah Admin</button>
+                <button type="button" class="btn btn-primary tambah" data-toggle="modal" data-target="#modalAdd">Tambah Admin</button>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-hover text-center">
@@ -76,15 +76,15 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nama">Nama</label>
-                        <input type="text" class="form-control" id="nama" name="nama">
+                        <input type="text" class="form-control" id="nama" name="nama" required>
                     </div>
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" name="username">
+                        <input type="text" class="form-control" id="username" name="username" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="text" class="form-control" id="password" name="password">
+                        <input type="text" class="form-control" id="password" name="password" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -116,9 +116,9 @@
 <script>
     $(document).ready(function() {
         //insert
-        $("#tambah").on("click", function() {
+        $(".tambah").on("click", function() {
             $(".modal-title").html("Tambah Admin");
-            $("form").attr("action", "AdminController/proses");
+            $("form").attr("action", "AdminController/process");
 
             //remove data in modal
             $("#nama").val('');
@@ -129,6 +129,7 @@
         //update
         $(".edit").on("click", function() {
             const id = $(this).data('id');
+            $("#password").removeAttr("required");
 
             $(".modal-title").html("Ubah Admin");
             $("form").attr("action", "AdminController/update/" + id);

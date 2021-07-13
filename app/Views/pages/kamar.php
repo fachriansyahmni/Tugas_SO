@@ -87,13 +87,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="kamar">No Kamar</label>
-                                <input type="text" class="form-control" id="kamar" name="kamar">
+                                <input type="text" class="form-control" id="kamar" name="kamar" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="lantai">Lantai</label>
-                                <input type="number" class="form-control" id="lantai" name="lantai">
+                                <input type="number" class="form-control" id="lantai" name="lantai" required>
                             </div>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                     </div>
                     <div class="form-group">
                         <label for="harga">Harga</label>
-                        <input type="number" class="form-control" id="harga" name="harga">
+                        <input type="number" class="form-control" id="harga" name="harga" required>
                     </div>
                 </div>
                 <div class="modal-footer">

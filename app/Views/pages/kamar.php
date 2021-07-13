@@ -46,7 +46,7 @@
                                 <td><?= rupiah($k['Harga']) ?></td>
                                 <td>
                                     <h5>
-                                        <?= $k['status_kamar'] == 0 ? '<span class="badge badge-success w-75 py-2">Tersedia</span>' : '<span class="badge badge-danger w-75 py-2">Terisi</span>' ?>
+                                        <?= $k['status_kamar'] == 0 ? '<span class="badge badge-success w-100 py-2">Tersedia</span>' : '<span class="badge badge-danger w-100 py-2">Terisi</span>' ?>
                                     </h5>
                                 </td>
                                 <td>

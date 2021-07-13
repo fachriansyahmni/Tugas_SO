@@ -105,8 +105,7 @@ class Sewa extends BaseController
 
     public function perpanjang($id)
     {
-        $tglSewa        = $this->request->getVar('perpanjangAwalSewa');
-        $tglAkhirSewa   = $this->request->getVar('perpanjangAkhirSewa');
+        $lamaSewa = $this->request->getVar('lamasewa');
 
         //get data sewa
         $dataSewa = $this->sewaModel->fetchSewaJoin($id);
@@ -114,18 +113,14 @@ class Sewa extends BaseController
         //get table kamar
         $kamar = $this->kamarModel->fetchkamar($dataSewa['NoKamar']);
 
-        //get interval
-        $lamaSewa = date_diff(date_create($tglSewa), date_create($tglAkhirSewa))->format('%a');
-
         //calculate grandTotal
         $grandTotal = $lamaSewa * $kamar['Harga'];
 
         $this->sewaModel->update($id, [
             'TanggalPembayaran' => null,
-            'TanggalSewa'       => $tglSewa,
-            'TanggalAkhirSewa'  => $tglAkhirSewa,
+            'TanggalSewa'       => date("Y-m-d"),
+            'LamaSewa'          => $lamaSewa,
             'GrandTotal'        => $grandTotal
-
         ]);
 
         return redirect()->to('/sewa');

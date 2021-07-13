@@ -42,7 +42,7 @@
                                 <td><?= $s['NoKamar'] ?></td>
                                 <td><?= $s['LamaSewa'] ?> Bulan</td>
                                 <td>
-                                    <button type="button" class="btn btn-success edit" data-toggle="modal" data-target="#modalAdd" data-id="<?= $s['IdPenyewa'] ?>">
+                                    <button type="button" class="btn btn-success edit" data-toggle="modal" data-target="#modalUpdate" data-id="<?= $s['IdPenyewa'] ?>" data-sewa="<?= $s['IdSewa'] ?>">
                                         <i class="fas fa-edit"></i>
                                     </button>
                                     <button type="button" class="btn btn-danger" id="hapus" data-href="Sewa/delete/<?= $s['IdSewa']; ?>" data-toggle="modal" data-target="#modalHapus">
@@ -156,6 +156,77 @@
 </div>
 <!-- End Modal Add -->
 
+<!-- Modal Ubah -->
+<div class="modal fade" id="modalUpdate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ubah Data Sewa</h5>
+            </div>
+            <form action="/Sewa/save" method="POST">
+                <div class="modal-body">
+                    <div class="form-group nama">
+                        <label for="ubahnama">Nama</label>
+                        <input type="text" class="form-control" id="ubahnama" name="nama">
+                    </div>
+                    <div class="row mb-3 jk">
+                        <div class="col-md-12">
+                            <label>Jenis Kelamin</label>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="jk" id="ubahjk_l" value="Laki-Laki">
+                                <label class="form-check-label" for="jk_l">Laki-Laki</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="jk" id="ubahjk_p" value="Perempuan">
+                                <label class="form-check-label" for="jk_p">Perempuan</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="telepon">No Telepon</label>
+                                <input type="text" class="form-control" id="ubahtelepon" name="telepon">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label for="alamat">Alamat</label>
+                                <textarea class="form-control" id="ubahalamat" name="alamat" rows="5"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3 tanggal">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="lamasewa">Lama Sewa</label>
+                                <input type="number" min="1" class="form-control" id="ubahlamasewa" name="lamasewa">
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <br>
+                            <p class="mt-3" style="margin-left: -10px;">Bulan</p>
+                        </div>
+                        <div class="col-md-auto">
+                            <br>
+                            <button type="submit" class="btn btn-primary mt-2 perpanjang" style="margin-left: -15px;">Perpanjang</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary back" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary ubah">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End Modal Ubah -->
+
 <!-- Modal Detail -->
 <div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -211,43 +282,6 @@
 </div>
 <!-- End Modal Detail -->
 
-<!-- Modal Perpanjang -->
-<div class="modal fade" id="modalPerpanjang" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Perpanjang</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="#" method="POST">
-                <div class="modal-body">
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="perpanjangAwalSewa">Tanggal Awal Sewa</label>
-                                <input type="date" class="form-control" id="perpanjangAwalSewa" name="perpanjangAwalSewa">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="perpanjangAkhirSewa">Tanggal Akhir Sewa</label>
-                                <input type="date" class="form-control" id="perpanjangAkhirSewa" name="perpanjangAkhirSewa">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- End Modal Perpanjang -->
-
 <!-- Modal Hapus -->
 <div class="modal fade" id="modalHapus" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -270,33 +304,12 @@
         $('#tambah').on('click', function() {
             $(".modal-title").html("Tambah Sewa");
             $("form").attr("action", "Sewa/save/");
-            $(".kamar").css({
-                display: "grid"
-            });
-            $(".tanggal").css({
-                display: "flex"
-            });
-
-            //remove data in modal
-            $('#nama').val("");
-            $('#alamat').val("");
-            $('#telepon').val("");
-            $("[name='jk'][value='Laki-Laki'").prop('checked', true);
-            $("[name='jk'][value='Perempuan'").prop('checked', false);
         });
 
         //Update
         $('.edit').on('click', function() {
             const id = $(this).data('id');
-
-            $(".modal-title").html("Ubah Data Penyewa");
-            $("form").attr("action", "Sewa/update/" + id);
-            $(".kamar").css({
-                display: "none"
-            });
-            $(".tanggal").css({
-                display: "none"
-            });
+            const idsewa = $(this).data('sewa');
 
             $.ajax({
                 url: "Sewa/getDataPenyewa",
@@ -306,9 +319,9 @@
                 method: "POST",
                 dataType: "json",
                 success: function(response) {
-                    $('#nama').val(response.NamaPenyewa);
-                    $('#telepon').val(response.NoTelp);
-                    $('#alamat').val(response.Alamat);
+                    $('#ubahnama').val(response.NamaPenyewa);
+                    $('#ubahtelepon').val(response.NoTelp);
+                    $('#ubahalamat').val(response.Alamat);
                     if (response.JenisKelamin == 'Laki-Laki') {
                         $("[name='jk'][value='Laki-Laki'").prop('checked', true)
                     } else {
@@ -317,6 +330,15 @@
                 },
 
             });
+
+            if ($(".perpanjang").click(function() {
+                    $("form").attr("action", "Sewa/perpanjang/" + idsewa);
+                }));
+
+
+            if ($(".ubah").click(function() {
+                    $("form").attr("action", "Sewa/update/" + id);
+                }));
         });
 
         // delete

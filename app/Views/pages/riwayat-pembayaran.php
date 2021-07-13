@@ -24,7 +24,8 @@
                         <thead>
                             <tr>
                                 <th scope="col">NO</th>
-                                <th scope="col">No Transaksi</th>
+                                <th scope="col" width="150">No Riwayat Transaksi</th>
+                                <th scope="col" width="100">Tanggal Pembayaran</th>
                                 <th scope="col">Penghuni</th>
                                 <th scope="col">No Kamar</th>
                                 <th scope="col">Total Harga</th>
@@ -38,8 +39,9 @@
                             foreach ($riwayatPembayarans as $index => $riwayatPembayaran) :
                             ?>
                                 <tr>
-                                    <th scope="row">1</th>
+                                    <th scope="row"><?= $no++ ?></th>
                                     <td><?= $riwayatPembayaran["IdRiwayatSewa"]  ?></td>
+                                    <td><?= $riwayatPembayaran["TanggalPembayaran"]  ?></td>
                                     <td><?= $riwayatPembayaran["NamaPenyewa"] ?></td>
                                     <td><?= $riwayatPembayaran["NoKamar"]  ?></td>
                                     <td><?= rupiah($riwayatPembayaran["GrandTotal"])  ?></td>
@@ -64,7 +66,11 @@
                                                 <div class="modal-body">
                                                     <div class="form-group row">
                                                         <label for="id" class="col-md-3">No Transaksi</label>
-                                                        <input type="text" class="form-control col-md-8" id="id" name="id" value="<?= $riwayatPembayaran['IdSewa'] ?>" readonly>
+                                                        <input type="text" class="form-control col-md-8" id="id" name="id" value="<?= $riwayatPembayaran['IdRiwayatSewa'] ?>" readonly>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="id" class="col-md-3">Tanggal Pembayaran</label>
+                                                        <input type="text" class="form-control col-md-8" id="id" name="id" value="<?= $riwayatPembayaran['TanggalPembayaran'] ?>" readonly>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label for="nama" class="col-md-3">Nama Penghuni</label>

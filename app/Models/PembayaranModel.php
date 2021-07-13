@@ -29,7 +29,8 @@ class PembayaranModel extends SewaModel
     public function fetchPembayaranJoin($id = false)
     {
         if ($id == false) {
-            $result = $this->join('sewa', 'sewa.IdSewa = riwayat_sewa.IdSewa')
+            $result = $this->Select('riwayat_sewa.IdRiwayatSewa, riwayat_sewa.TanggalPembayaran, riwayat_sewa.TanggalSewa, riwayat_sewa.LamaSewa, riwayat_sewa.GrandTotal, penyewa.NamaPenyewa, kamar.NoKamar, kamar.Harga')
+                ->join('sewa', 'sewa.IdSewa = riwayat_sewa.IdSewa')
                 ->join('penyewa', 'penyewa.IdPenyewa = sewa.IdPenyewa')
                 ->join('kamar', 'kamar.NoKamar = sewa.NoKamar')
                 ->findAll();

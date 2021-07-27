@@ -2,6 +2,11 @@
 
 namespace App\Controllers;
 
+use App\Models\KamarModel;
+use App\Models\PenyewaModel;
+use App\Models\SewaModel;
+use App\Models\PembayaranModel;
+use App\Models\UserModel;
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\CLIRequest;
 use CodeIgniter\HTTP\IncomingRequest;
@@ -36,7 +41,7 @@ class BaseController extends Controller
 	 *
 	 * @var array
 	 */
-	protected $helpers = [];
+	protected $helpers = ['rupiah'];
 
 	/**
 	 * Constructor.
@@ -54,5 +59,21 @@ class BaseController extends Controller
 		// Preload any models, libraries, etc, here.
 		//--------------------------------------------------------------------
 		// E.g.: $this->session = \Config\Services::session();
+	}
+
+	protected $userModel;
+	protected $kamarModel;
+	protected $penyewaModel;
+	protected $sewaModel;
+	protected $pembayaranModel;
+
+	public function __construct()
+	{
+		helper('rupiah');
+		$this->userModel = new UserModel();
+		$this->kamarModel = new KamarModel();
+		$this->penyewaModel = new PenyewaModel();
+		$this->sewaModel = new SewaModel();
+		$this->pembayaranModel = new PembayaranModel();
 	}
 }
